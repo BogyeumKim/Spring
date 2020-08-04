@@ -20,13 +20,19 @@ public class Member {
 		this.regdate = regdate;
 	}
 	
-	// MemberRegRequest -> Member
-	public Member(String uid, String upw, String uname) {
-		this(0, uid, upw, uname, null, null);
-	}
+
 
 	public Member() {
 	}
+	
+	
+	// MemberRegRequest -> Member
+		public Member(String uid, String upw, String uname) {
+			this(0, uid, upw, uname, null, null);
+		}
+
+
+
 
 	public int getIdx() {
 		return idx;
