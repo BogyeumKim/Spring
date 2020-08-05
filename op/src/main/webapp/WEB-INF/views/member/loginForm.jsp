@@ -39,10 +39,6 @@
 					<td> <input type="password" name="upw"> </td>
 				</tr>				
 				<tr>
-					<td></td>
-					<td> <input type="checkbox" name="remember" value="r" ${cookie.uid != null ? 'checked' : '' } > 아이디 기억하기  </td>
-				</tr>
-				<tr>
 					<td colspan="2"> <input type="submit" value="로그인"> </td>
 				</tr>
 			</table>

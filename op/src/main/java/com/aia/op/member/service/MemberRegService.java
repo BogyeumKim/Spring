@@ -6,12 +6,14 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.aia.op.member.dao.JdbcTemplateMemberDao;
 import com.aia.op.member.dao.MemberDao;
+import com.aia.op.member.dao.MemberDaoInterface;
 import com.aia.op.member.dao.MybatisMemberDao;
 import com.aia.op.member.model.Member;
 import com.aia.op.member.model.MemberRegRequest;
@@ -25,16 +27,35 @@ public class MemberRegService {
 	 * @Autowired JdbcTemplateMemberDao dao;
 	 */
 	
+	/*
+	 * @Autowired MybatisMemberDao dao;
+	 */
+	
+	
+	private MemberDaoInterface dao;
+	
 	@Autowired
-	MybatisMemberDao dao;
+	private SqlSessionTemplate sessionTemplate;
 	
 	
 	public int memberReg(HttpServletRequest request,MemberRegRequest reg) throws SQLException {
 		
 		
+		
+		dao = sessionTemplate.getMapper(MemberDaoInterface.class);
+		
+		
 		int result=0;
 		
 		Member member = reg.toMember();
+		
+		
+		System.out.println("입력전 IDX =>>>>>>>>>>>" + member.getIdx());
+		
+		
+		
+		
+		
 		
 		MultipartFile file = reg.getPhoto();
 		
@@ -68,7 +89,7 @@ public class MemberRegService {
 		
 			result = dao.insertMember(member);
 		
-		
+			System.out.println("입력후 IDX =>>>>>>>>>>>" + member.getIdx());
 		
 		return result;
 		
