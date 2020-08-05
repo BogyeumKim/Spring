@@ -99,7 +99,16 @@
 	 <select id="selectList" parameterType="map" resultMap="resultMember">
 	 
 	 select * from project.member
+		 
+		<include refid="listSearch"/>	 
 	 
+	 
+	 limit #{startRow},#{count}
+	 </select>
+	 
+	 
+	 
+	 <sql id="listSearch">
 	  <where>
 	 	<if test="search.searchType != null and search.keyword !=null">
 	 	
@@ -116,24 +125,7 @@
 	 	</if>
 	 </where>
 	 
-	 
-	 limit #{search.startRow},#{search.count}
-	 
-	 
-	 
-	 
-	 
-	 </select>
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
+	 </sql>
 	 
 	 
 	 
@@ -153,8 +145,6 @@
 	INSERT INTO project.member (uid, upw, uname, uphoto ) VALUES (#{uid},#{upw},#{uname},#{uphoto})
 	
 	</insert>
-
-
 
 
 
