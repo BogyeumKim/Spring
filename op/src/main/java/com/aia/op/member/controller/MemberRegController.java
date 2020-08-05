@@ -1,5 +1,7 @@
 package com.aia.op.member.controller;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ public class MemberRegController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String getRegService(MemberRegRequest reg, HttpServletRequest request, Model model) {
+	public String getRegService(MemberRegRequest reg, HttpServletRequest request, Model model) throws SQLException {
 		
 		
 		System.out.println("컨트롤러 : "+reg);

@@ -2,6 +2,7 @@ package com.aia.op.member.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.aia.op.member.dao.JdbcTemplateMemberDao;
 import com.aia.op.member.dao.MemberDao;
+import com.aia.op.member.dao.MybatisMemberDao;
 import com.aia.op.member.model.Member;
 import com.aia.op.member.model.MemberRegRequest;
 
@@ -19,10 +21,15 @@ public class MemberRegService {
 
 	
 	
-	@Autowired
-	JdbcTemplateMemberDao dao;
+	/*
+	 * @Autowired JdbcTemplateMemberDao dao;
+	 */
 	
-	public int memberReg(HttpServletRequest request,MemberRegRequest reg) {
+	@Autowired
+	MybatisMemberDao dao;
+	
+	
+	public int memberReg(HttpServletRequest request,MemberRegRequest reg) throws SQLException {
 		
 		
 		int result=0;
