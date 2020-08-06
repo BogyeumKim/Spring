@@ -20,6 +20,17 @@
 
 
 
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="com.aia.op.member.model.Member" useGeneratedKeys="true" keyProperty="idx">
+	
+	
+	INSERT INTO project.member (uid, upw, uname, uphoto ) VALUES (#{uid},#{upw},#{uname},#{uphoto})
+	
+	</insert>
+
+
+	<!-- 로그인 -->
+
 	<select id="selectByIdpw"
 		resultType="com.aia.op.member.model.Member"
 	>
@@ -28,6 +39,24 @@
 	
 	
 	</select>
+	
+	<!--  회원리스트 출력 -->
+	
+	<select id="selectList" parameterType="com.aia.op.member.model.Member" resultType="com.aia.op.member.model.Member">
+	
+	select * from project.member
+	
+	
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	 <!-- 검색 : id,name,id or name  
 	 	map.put("searchType","id") id에 name이나 both도 들어갈수있음 
@@ -70,8 +99,8 @@
 	 -->
 	 
 	 
-	 <select id="totalCount" parameterType="map" resultType="int">
-	<!--  #{search.searchType} -->
+	<!--  <select id="totalCount" parameterType="map" resultType="int">
+	 #{search.searchType}
 	 
 	 select count(*) from project.member
 	 
@@ -92,10 +121,10 @@
 	 	</if>
 	 </where>
 	 </select>
+	  -->
 	 
 	 
-	 
-	 
+	 <!-- 
 	 <select id="selectList" parameterType="map" resultMap="resultMember">
 	 
 	 select * from project.member
@@ -105,10 +134,10 @@
 	 
 	 limit #{startRow},#{count}
 	 </select>
+	  -->
 	 
 	 
-	 
-	 <sql id="listSearch">
+	<!--  <sql id="listSearch">
 	  <where>
 	 	<if test="search.searchType != null and search.keyword !=null">
 	 	
@@ -135,18 +164,10 @@
 	</sql>
 	<sql id="whereName">
 		or uname like concat('%',#{keyword},'%')
-	</sql>
+	</sql> -->
 	
 	
 	
-	<insert id="insertMember" parameterType="com.aia.op.member.model.Member" useGeneratedKeys="true" keyProperty="idx">
-	
-	
-	INSERT INTO project.member (uid, upw, uname, uphoto ) VALUES (#{uid},#{upw},#{uname},#{uphoto})
-	
-	</insert>
-
-
 
 
 

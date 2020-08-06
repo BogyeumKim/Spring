@@ -9,7 +9,7 @@
 		
 		<li><a href="<c:url value="/login/login"/>">로그인</a></li>
 		
-		<li>마이페이지</li>
+		<li><a href="<c:url value="/member/list"/>">회원목록</a></li>
 		<li>방명록(비회원)</li>
 		<li>방명록(회원제)</li>
 	</ul>
