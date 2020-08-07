@@ -99,7 +99,7 @@
 	
 	
 	
-	function delete(idx) {
+	function deleteForm(idx) {
 		if(confirm('정말 삭제하시겠습니까?')){
 			
 			$.ajax({
@@ -158,7 +158,7 @@
 		
 		
 		$.ajax({
-			url : 'http://localhost:8080/member/members'+$('#idx').val(),
+			url : 'http://localhost:8080/member/members/'+$('#idx').val(),
 			type : 'POST', // 원래 PUT으로하는데 POST로 테스트한후에 오류없으면바꾼다함
 			processData : false, // File 전송시 필수 
 			contentType : false, // multipart/form-data 쓰는 코드
@@ -244,7 +244,7 @@
 					html += '<li>uNmae :'+data[i].uname+'<li>';
 					html += '<li>uPhoto :'+data[i].uphoto+'<li>';
 					html += '<li><input type="button" value="수정" onclick="editForm('+data[i].idx+')">' // editForm 함수불러옴
-					html += '<input type="button" value="삭제" onclick="delete('+data[i].idx+')">'
+					html += '<input type="button" value="삭제" onclick="deleteForm('+data[i].idx+')">'
 					html += '</div>';
 				}
 				

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aia.member.model.Member;
 import com.aia.member.model.MemberEditRequest;
 import com.aia.member.model.MemberRegRequest;
+import com.aia.member.service.MemberDeleteService;
 import com.aia.member.service.MemberEditService;
 import com.aia.member.service.MemberListService;
 import com.aia.member.service.MemberRegService;
@@ -26,20 +27,21 @@ import com.aia.member.service.MemberViewService;
 public class MemberRestController {
 
 	@Autowired
-	MemberListService listService;
+	private MemberListService listService;
 	
 	
 	@Autowired
-	MemberRegService regsSrvice;
+	private MemberRegService regsSrvice;
 	
 	@Autowired
-	MemberViewService viewService;
+	private MemberViewService viewService;
 	
 	
 	@Autowired
-	MemberEditService editService;
+	private MemberEditService editService;
 	
-	
+	@Autowired
+	private MemberDeleteService deleteService;
 	
 	//회원의 리스트 : Json 으로 응답
 	@GetMapping		// GET , 경로 : /members
@@ -69,7 +71,6 @@ public class MemberRestController {
 	
 	
 	// 회원 한명 정보 수정
-	
 	//@PutMapping("/{idx}") // Http리퀘스트받아온건 절대경로때문에 받아온거라고함
 	@PostMapping("/{idx}")
 	public int edit(@PathVariable("idx") int idx, HttpServletRequest request, MemberEditRequest editRequest) {
@@ -81,11 +82,12 @@ public class MemberRestController {
 	}
 	
 	
+	
 	// 회원 삭제
 	@DeleteMapping("/{idx}")
-	public int delete() {
+	public int delete(@PathVariable("idx") int idx) {
 		
-		return 0;
+		return deleteService.deleteMember(idx);
 	}
 	
 	
