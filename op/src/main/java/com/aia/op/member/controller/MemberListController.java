@@ -18,7 +18,7 @@ public class MemberListController {
 	@RequestMapping("/member/list")
 	public String getList(HttpServletRequest req,Model model) {
 		
-		model.addAttribute("list",service.getMemberList(req));
+		model.addAttribute("list",service.getMemberList());
 		return "/member/ListView";
 		
 	}

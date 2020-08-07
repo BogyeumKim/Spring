@@ -22,15 +22,11 @@ public class MemberListService {
 	private SqlSessionTemplate template;
 	
 	
-	public List<Member> getMemberList(HttpServletRequest request){
+	public List<Member> getMemberList(){
 		
 		dao=template.getMapper(MemberDaoInterface.class);
 		
-		
-		List<Member> members = new ArrayList<Member>();
-		
-		
-		return members=dao.selectList();
+		return dao.selectList();
 		
 		
 		
