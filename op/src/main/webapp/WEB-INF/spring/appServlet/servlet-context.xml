@@ -40,6 +40,17 @@
 	
 	<context:component-scan base-package="com.aia.op" />
 	
+	<!-- Intercepter 설정 -->
+
+	<interceptors>
+		<interceptor>
+		<mapping path="/member/mypage/**"/>
+		
+		
+		<beans:bean class="com.aia.op.intercepter.AuthCheckintercepter"/>
+		</interceptor>
+	</interceptors>
+	
 	
 	
 </beans:beans>
