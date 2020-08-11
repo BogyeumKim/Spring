@@ -1,5 +1,7 @@
 package com.aia.guest.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +23,6 @@ public class GuestWriteService {
 		dao=template.getMapper(GuestDao.class);
 		
 		gb = new Guest_book();
-		
 		
 		return dao.insertPost(gb);
 	}

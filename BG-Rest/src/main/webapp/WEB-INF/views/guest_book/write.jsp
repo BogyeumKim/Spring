@@ -9,16 +9,12 @@
 <body>
 
 
-<form method="post" action="<%=context%>/write">
-		
-			<input type="text" name="redirecUri" 
-			
-			value="${header.referer}" style=" width : 50% ;" >			
+<form method="post">
 		
 			<table class="table">
 				<tr>
-					<!-- <td> 글쓴이 </td>
-					<td> <input type="text" name="guest_writer"> </td> -->
+					<td> 글쓴이 </td>
+					<td> <input type="text" name="guest_writer" > </td>
 				</tr>
 				<tr>
 					<td> 내용 </td>

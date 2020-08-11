@@ -2,6 +2,8 @@ package com.aia.guest.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,11 +42,9 @@ public class Guest_Controller {
 	
 	
 	
-	/* @PostMapping("/write") */
-	@RequestMapping(value = "/write")
-	public int Writing(/* @ModelAttribute("loginInfo.member_idx") int idx, */Model model, Guest_book gb) {
-		
-//		gb.setGuest_writer(1); 
+//	글쓰기
+	@PostMapping("/write")
+	public int Writing( Guest_book gb) {
 		return WriteService.boardWriter(gb);
 	}
 	
