@@ -20,5 +20,5 @@ public class GuestViewService {
 		
 		dao=template.getMapper(GuestDao.class);
 		return dao.selectByIdx(idx);
-	}
+	}f
 }
