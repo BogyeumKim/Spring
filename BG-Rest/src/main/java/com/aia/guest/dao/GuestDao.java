@@ -10,5 +10,7 @@ public interface GuestDao {
 	List<Guest_book> selectList();
 
 	int insertPost(Guest_book gb);
+
+	Guest_book selectByIdx(int idx);
 	
 }
