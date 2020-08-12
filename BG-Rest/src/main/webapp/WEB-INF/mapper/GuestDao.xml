@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <!-- 방명록 전체게시글 출력 -->
 <select id="selectList" resultType="com.aia.guest.model.Guest_Join">
 
-SELECT * FROM Mangchi.guest_book inner join Mangchi.guest_comment on Mangchi.guest_book.guest_idx= Mangchi.guest_comment.comguest_idx order by Mangchi.guest_book.guest_idx desc;
+SELECT * FROM Mangchi.guest_book order by Mangchi.guest_book.guest_idx desc;
 
 
 
