@@ -16,9 +16,9 @@ public class GuestViewService {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public Guest_book getView(int idx) {
+	public Guest_book getView(int guest_idx) {
 		
 		dao=template.getMapper(GuestDao.class);
-		return dao.selectByIdx(idx);
-	}f
+		return dao.selectByIdx(guest_idx);
+	}
 }

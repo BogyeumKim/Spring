@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aia.guest.dao.GuestDao;
+import com.aia.guest.model.Guest_Join;
 import com.aia.guest.model.Guest_book;
 
 @Service
@@ -19,7 +20,7 @@ public class GuestListService {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public List<Guest_book> getList(){
+	public List<Guest_Join> getList(){
 		
 		dao=template.getMapper(GuestDao.class);
 		

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.aia.guest.model.Guest_Join;
 import com.aia.guest.model.Guest_book;
 import com.aia.guest.service.GuestListService;
 import com.aia.guest.service.GuestViewService;
@@ -39,7 +40,7 @@ public class Guest_Controller {
 	
 //	 전체 출력
 	@GetMapping
-	public List<Guest_book> ViewList(){
+	public List<Guest_Join> ViewList(){
 		return ListService.getList();
 	}
 	
@@ -53,9 +54,9 @@ public class Guest_Controller {
 	
 
 //한개 출력
-	@GetMapping("/{idx}")
-	public Guest_book viewgb(@PathVariable("idx") int idx) {
-		return viewService.getView(idx);
+	@GetMapping("/{guest_idx}")
+	public Guest_book viewgb(@PathVariable("guest_idx") int guest_idx) {
+		return viewService.getView(guest_idx);
 	}
 	
 	
