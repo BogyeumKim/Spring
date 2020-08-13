@@ -62,6 +62,7 @@ public class Guest_Controller {
 //	글쓰기
 	@PostMapping
 	public int Writing( Guest_book gb) {
+		System.out.println(gb.getGuest_writer());
 		return WriteService.boardWriter(gb);
 	}
 	
@@ -82,9 +83,7 @@ public class Guest_Controller {
 // 좋아요감소
 	@PutMapping("/mi/{guest_idx}")
 	public int likedown(@PathVariable("guest_idx") int guest_idx) {
-		System.out.println(guest_idx);
 		int a =likedownService.likedown(guest_idx);
-		System.out.println(a);
 		return a;
 	}
 	

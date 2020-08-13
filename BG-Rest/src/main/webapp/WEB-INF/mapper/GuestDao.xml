@@ -19,7 +19,7 @@ select * from Mangchi.guest_book inner join Mangchi.member on guest_writer=membe
 <!--  방명록 글쓰기 -->
 <insert id="insertPost" parameterType="com.aia.guest.model.Guest_book">
 
-INSERT INTO Mangchi.guest_book(guest_writer,guest_text,guest_photo,guest_addr,x,y)VALUES(#{guest_writer},#{guest_text},#{guest_photo},#{guest_addr},#{x},#{y})
+INSERT INTO Mangchi.guest_book (guest_writer,guest_text,guest_photo,guest_addr,x,y) VALUES (#{guest_writer},#{guest_text},#{guest_photo},#{guest_addr},#{x},#{y})
 
 </insert>
 

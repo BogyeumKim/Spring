@@ -15,8 +15,8 @@ public class Guest_book {
 	private int guest_like;
 	private String guest_addr;
 	private int guest_hits;
-	private int x;
-	private int y;
+	private Double x;
+	private Double y;
 	private String member_img;
 	private int member_radius;
 	
@@ -34,16 +34,16 @@ public class Guest_book {
 	public void setMember_radius(int member_radius) {
 		this.member_radius = member_radius;
 	}
-	public int getX() {
+	public Double getX() {
 		return x;
 	}
-	public void setX(int x) {
+	public void setX(Double x) {
 		this.x = x;
 	}
-	public int getY() {
+	public Double getY() {
 		return y;
 	}
-	public void setY(int y) {
+	public void setY(Double y) {
 		this.y = y;
 	}
 	public int getGuest_idx() {
