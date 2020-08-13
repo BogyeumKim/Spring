@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
  <!-- 방명록 전체게시글 출력 -->
-<select id="selectList" resultType="com.aia.guest.model.Guest_Join">
+<select id="selectList" resultType="com.aia.guest.model.Guest_book">
 
 SELECT * FROM Mangchi.guest_book order by Mangchi.guest_book.guest_idx desc;
 
@@ -24,11 +24,16 @@ INSERT INTO Mangchi.guest_book(guest_writer,guest_text,guest_photo,guest_addr)VA
 </insert>
 
 
+<!-- 상세게시글 -->
 <select id="selectByIdx" resultType="com.aia.guest.model.Guest_book">
 
 	select * from  Mangchi.guest_book where guest_idx=#{guest_idx}
 </select>
 
+<!-- 좋아요누름 -->
+<update id="updatehits" parameterType="com.aia.guest.model.Guest_book" >
+<![CDATA[update Mangchi.guest_book set guest_hits = ifnull(guest_hits,0)+1 where guest_idx=#{guest_idx}]]>
+</update>
 
 
 
