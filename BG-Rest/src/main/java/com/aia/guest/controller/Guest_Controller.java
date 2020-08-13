@@ -69,11 +69,12 @@ public class Guest_Controller {
 	}
 	
 	
-// 좋아요
+// 좋아요증감
 	@PutMapping("/{guest_idx}")
-	public Guest_book likeup(@PathVariable("guest_idx") int guest_idx) {
+	public int likeup(@PathVariable("guest_idx") int guest_idx) {
 		return hitService.hitsup(guest_idx);
 	}
+	
 	
 	
 	

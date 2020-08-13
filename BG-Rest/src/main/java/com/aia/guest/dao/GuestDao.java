@@ -13,6 +13,6 @@ public interface GuestDao {
 
 	Guest_book selectByIdx(int guest_idx);
 
-	Guest_book updatehits(int guest_idx);
+	int updatehits(int guest_idx);
 	
 }

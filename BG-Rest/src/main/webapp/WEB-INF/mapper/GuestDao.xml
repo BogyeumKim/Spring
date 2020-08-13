@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <!-- 방명록 전체게시글 출력 -->
 <select id="selectList" resultType="com.aia.guest.model.Guest_book">
 
-SELECT * FROM Mangchi.guest_book order by Mangchi.guest_book.guest_idx desc;
+SELECT * FROM Mangchi.guest_book order by Mangchi.guest_book.guest_idx desc
 
 
 
@@ -31,7 +31,7 @@ INSERT INTO Mangchi.guest_book(guest_writer,guest_text,guest_photo,guest_addr)VA
 </select>
 
 <!-- 좋아요누름 -->
-<update id="updatehits" parameterType="com.aia.guest.model.Guest_book" >
+<update id="updatehits" parameterType="com.aia.guest.model.Guest_book"  >
 <![CDATA[update Mangchi.guest_book set guest_like = ifnull(guest_like,0)+1 where guest_idx=#{guest_idx}]]>
 </update>
 

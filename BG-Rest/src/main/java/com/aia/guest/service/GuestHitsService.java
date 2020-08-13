@@ -15,7 +15,7 @@ public class GuestHitsService {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public Guest_book hitsup(int guest_idx) {
+	public int hitsup(int guest_idx) {
 		dao=template.getMapper(GuestDao.class);
 		return dao.updatehits(guest_idx);
 		
