@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <!-- 방명록 전체게시글 출력 -->
 <select id="selectList" resultType="com.aia.guest.model.Guest_book">
 
-SELECT * FROM Mangchi.guest_book order by Mangchi.guest_book.guest_idx desc
+select * from Mangchi.guest_book inner join Mangchi.member on guest_writer=member_nick order by guest_idx desc
 
 
 
@@ -19,7 +19,7 @@ SELECT * FROM Mangchi.guest_book order by Mangchi.guest_book.guest_idx desc
 <!--  방명록 글쓰기 -->
 <insert id="insertPost" parameterType="com.aia.guest.model.Guest_book">
 
-INSERT INTO Mangchi.guest_book(guest_writer,guest_text,guest_photo,guest_addr)VALUES(#{guest_writer},#{guest_text},#{guest_photo},#{guest_addr})
+INSERT INTO Mangchi.guest_book(guest_writer,guest_text,guest_photo,guest_addr,x,y)VALUES(#{guest_writer},#{guest_text},#{guest_photo},#{guest_addr},#{x},#{y})
 
 </insert>
 

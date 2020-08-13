@@ -15,6 +15,37 @@ public class Guest_book {
 	private int guest_like;
 	private String guest_addr;
 	private int guest_hits;
+	private int x;
+	private int y;
+	private String member_img;
+	private int member_radius;
+	
+	
+	
+	public String getMember_img() {
+		return member_img;
+	}
+	public void setMember_img(String member_img) {
+		this.member_img = member_img;
+	}
+	public int getMember_radius() {
+		return member_radius;
+	}
+	public void setMember_radius(int member_radius) {
+		this.member_radius = member_radius;
+	}
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getY() {
+		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
+	}
 	public int getGuest_idx() {
 		return guest_idx;
 	}
@@ -67,8 +98,11 @@ public class Guest_book {
 	public String toString() {
 		return "Guest_book [guest_idx=" + guest_idx + ", guest_writer=" + guest_writer + ", guest_text=" + guest_text
 				+ ", guest_photo=" + guest_photo + ", guest_date=" + guest_date + ", guest_like=" + guest_like
-				+ ", guest_addr=" + guest_addr + ", guest_hits=" + guest_hits + "]";
+				+ ", guest_addr=" + guest_addr + ", guest_hits=" + guest_hits + ", x=" + x + ", y=" + y
+				+ ", member_img=" + member_img + ", member_radius=" + member_radius + "]";
 	}
+	
+	
 	
 	
 	

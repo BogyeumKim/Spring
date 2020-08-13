@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -58,7 +60,7 @@ public class Guest_Controller {
 	
 	
 //	글쓰기
-	@PostMapping("/write")
+	@PostMapping
 	public int Writing( Guest_book gb) {
 		return WriteService.boardWriter(gb);
 	}
@@ -72,15 +74,18 @@ public class Guest_Controller {
 	
 	
 // 좋아요증감
-	@PutMapping("/{guest_idx}")
+	@PutMapping("/plus/{guest_idx}")
 	public int likeup(@PathVariable("guest_idx") int guest_idx) {
 		return likeupService.likeup(guest_idx);
 	}
 	
 // 좋아요감소
-	@PutMapping("/{guest_idx}")
+	@PutMapping("/mi/{guest_idx}")
 	public int likedown(@PathVariable("guest_idx") int guest_idx) {
-		return likedownService.likedown(guest_idx);
+		System.out.println(guest_idx);
+		int a =likedownService.likedown(guest_idx);
+		System.out.println(a);
+		return a;
 	}
 	
 	
