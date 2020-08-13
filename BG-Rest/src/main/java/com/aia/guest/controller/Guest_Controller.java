@@ -19,10 +19,11 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.aia.guest.model.Guest_book;
-import com.aia.guest.service.GuestHitsService;
+import com.aia.guest.service.GuestLikdownService;
 import com.aia.guest.service.GuestListService;
 import com.aia.guest.service.GuestViewService;
 import com.aia.guest.service.GuestWriteService;
+import com.aia.guest.service.GuestlikService;
 import com.sun.org.glassfish.gmbal.ParameterNames;
 
 @RestController
@@ -42,9 +43,10 @@ public class Guest_Controller {
 	
 	
 	@Autowired
-	private GuestHitsService hitService;
+	private GuestlikService likeupService;
 	
-	
+	@Autowired
+	private GuestLikdownService likedownService;
 	
 	
 //	 전체 출력
@@ -72,10 +74,14 @@ public class Guest_Controller {
 // 좋아요증감
 	@PutMapping("/{guest_idx}")
 	public int likeup(@PathVariable("guest_idx") int guest_idx) {
-		return hitService.hitsup(guest_idx);
+		return likeupService.likeup(guest_idx);
 	}
 	
-	
+// 좋아요감소
+	@PutMapping("/{guest_idx}")
+	public int likedown(@PathVariable("guest_idx") int guest_idx) {
+		return likedownService.likedown(guest_idx);
+	}
 	
 	
 }

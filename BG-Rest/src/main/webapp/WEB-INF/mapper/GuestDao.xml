@@ -31,10 +31,14 @@ INSERT INTO Mangchi.guest_book(guest_writer,guest_text,guest_photo,guest_addr)VA
 </select>
 
 <!-- 좋아요누름 -->
-<update id="updatehits" parameterType="com.aia.guest.model.Guest_book"  >
+<update id="updatelikeup" parameterType="com.aia.guest.model.Guest_book"  >
 <![CDATA[update Mangchi.guest_book set guest_like = ifnull(guest_like,0)+1 where guest_idx=#{guest_idx}]]>
 </update>
 
+<!-- 좋아요취소 -->
+<update id="updatelikedown" parameterType="com.aia.guest.model.Guest_book"  >
+<![CDATA[update Mangchi.guest_book set guest_like = ifnull(guest_like,0)-1 where guest_idx=#{guest_idx}]]>
+</update>
 
 
 
