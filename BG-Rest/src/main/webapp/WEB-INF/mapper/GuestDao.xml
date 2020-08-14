@@ -11,9 +11,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="selectList" resultType="com.aia.guest.model.Guest_book">
 
 SELECT * FROM Mangchi.guest_book where 
-	(6371*acos(cos(radians(37.5698416253417))*cos(radians(#{x}))*cos(radians(#{y})
+	(6371*acos(cos(radians(#{mx}))*cos(radians(#{x}))*cos(radians(#{y})
 
-	-radians(126.978096062325))+sin(radians(37.5698416253417))*sin(radians(#{x})))) > #{member_radius}
+	-radians(#{my}))+sin(radians(#{mx}))*sin(radians(#{x})))) > #{member_radius}
 order by guest_idx desc
 
 

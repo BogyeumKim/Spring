@@ -54,9 +54,13 @@ public class Guest_Controller {
 	
 //	 전체 출력
 	@GetMapping
-	public List<Guest_book> ViewList(double x,double y, int member_radius){
+	public List<Guest_book> ViewList(@RequestParam("xx") double mx,
+			@RequestParam("yy") double my,
+			@RequestParam(value="arrX[]") double x,
+			@RequestParam(value="arrY[]") double y,
+			@RequestParam("rr") int member_radius){
 
-		return ListService.getList( x,  y, member_radius);
+		return ListService.getList(mx, x, my, y, member_radius);
 	}
 	
 	
