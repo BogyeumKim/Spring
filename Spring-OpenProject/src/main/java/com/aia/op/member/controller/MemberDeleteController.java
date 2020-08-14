@@ -27,5 +27,8 @@ public class MemberDeleteController {
 		
 		return "member/memberDelete";
 	}
+
+	public static void main(String[] args) {
+	}
 	
 }

@@ -19,9 +19,9 @@ public class GuestListService {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public List<Guest_book> getList(double mx, double x,double my,double y, int member_radius){
+	public List<Guest_book> getList(double xx, double yy,int member_radius){
 		dao=template.getMapper(GuestDao.class);
-		return dao.selectList(mx, x,my, y, member_radius);
+		return dao.selectList(xx, yy, member_radius);
 		
 	}
 	

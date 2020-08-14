@@ -8,13 +8,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
  <!-- 방명록 전체게시글 출력 -->
-<select id="selectList" resultType="com.aia.guest.model.Guest_book">
+<select id="selectList" parameterType="map" resultType="com.aia.guest.model.Guest_book">
 <![CDATA[
-SELECT * FROM Mangchi.guest_book where 
-	(6371*acos(cos(radians(#{mx}))*cos(radians(#{x}))*cos(radians(#{y})
+SELECT *
 
-	-radians(#{my}))+sin(radians(#{mx}))*sin(radians(#{x})))) > #{member_radius}
-order by guest_idx desc
+FROM Mangchi.guest_book
+
+where (6371*acos(cos(radians(#{param1}))*cos(radians(x))*cos(radians(y)
+
+	-radians(#{param2}))+sin(radians(#{param1}))*sin(radians(x)))) <= #{param3}
+	order by guest_idx desc
+
  ]]>
 
 
@@ -23,7 +27,7 @@ order by guest_idx desc
 <!--  방명록 글쓰기 -->
 <insert id="insertPost" parameterType="com.aia.guest.model.Guest_book">
 
-INSERT INTO Mangchi.guest_book (guest_writer,guest_text,guest_photo,guest_addr,x,y) VALUES (#{guest_writer},#{guest_text},#{guest_photo},#{guest_addr},#{x},#{y})
+INSERT INTO Mangchi.guest_book (guest_writer,guest_text,guest_photo,x,y) VALUES (#{guest_writer},#{guest_text},#{guest_photo},#{x},#{y})
 
 </insert>
 

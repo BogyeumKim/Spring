@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.aia.guest.model.Guest_book;
+import com.aia.guest.model.Guest_post;
 import com.aia.guest.service.GuestLikdownService;
 import com.aia.guest.service.GuestListService;
 import com.aia.guest.service.GuestViewService;
@@ -54,22 +55,19 @@ public class Guest_Controller {
 	
 //	 전체 출력
 	@GetMapping
-	public List<Guest_book> ViewList(@RequestParam("xx") double mx,
-			@RequestParam("yy") double my,
-			@RequestParam(value="arrX[]") double x,
-			@RequestParam(value="arrY[]") double y,
-			@RequestParam("rr") int member_radius){
+	public List<Guest_book> ViewList(@Param("param1") double xx,
+			@Param("param2") double yy,
+			@Param("param3") int member_radius){
 
-		return ListService.getList(mx, x, my, y, member_radius);
+		return ListService.getList(xx, yy, member_radius);
 	}
 	
 	
 	
 //	글쓰기
 	@PostMapping
-	public int Writing( Guest_book gb) {
-		System.out.println(gb.getGuest_writer());
-		return WriteService.boardWriter(gb);
+	public int Writing(Guest_post postreq,HttpServletRequest request) {
+		return WriteService.boardWriter(postreq,request);
 	}
 	
 
