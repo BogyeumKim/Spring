@@ -9,13 +9,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
  <!-- 방명록 전체게시글 출력 -->
 <select id="selectList" resultType="com.aia.guest.model.Guest_book">
-
+<![CDATA[
 SELECT * FROM Mangchi.guest_book where 
 	(6371*acos(cos(radians(#{mx}))*cos(radians(#{x}))*cos(radians(#{y})
 
 	-radians(#{my}))+sin(radians(#{mx}))*sin(radians(#{x})))) > #{member_radius}
 order by guest_idx desc
-
+ ]]>
 
 
 </select>
