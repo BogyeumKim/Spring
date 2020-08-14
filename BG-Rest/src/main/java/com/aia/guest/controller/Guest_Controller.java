@@ -3,6 +3,7 @@ package com.aia.guest.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
@@ -53,8 +54,9 @@ public class Guest_Controller {
 	
 //	 전체 출력
 	@GetMapping
-	public List<Guest_book> ViewList(){
-		return ListService.getList();
+	public List<Guest_book> ViewList(double x,double y, int member_radius){
+
+		return ListService.getList( x,  y, member_radius);
 	}
 	
 	

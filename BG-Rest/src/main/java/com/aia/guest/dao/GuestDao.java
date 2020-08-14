@@ -7,7 +7,7 @@ import com.aia.guest.model.Guest_book;
 public interface GuestDao {
 
 	
-	List<Guest_book> selectList();
+	List<Guest_book> selectList(double x,double y, int member_radius);
 
 	int insertPost(Guest_book gb);
 
