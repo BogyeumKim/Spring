@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.aia.guest.model.Guest_book;
 import com.aia.guest.model.Guest_post;
+import com.aia.guest.service.GuestDeleteService;
 import com.aia.guest.service.GuestLikdownService;
 import com.aia.guest.service.GuestListService;
 import com.aia.guest.service.GuestViewService;
@@ -52,6 +54,8 @@ public class Guest_Controller {
 	@Autowired
 	private GuestLikdownService likedownService;
 	
+	@Autowired
+	private GuestDeleteService deleteService;
 	
 //	 전체 출력
 	@GetMapping
@@ -91,5 +95,12 @@ public class Guest_Controller {
 		return a;
 	}
 	
+	
+// 게시글 삭제
+	
+	@DeleteMapping("/{guest_idx}")
+	public int deletegb(@PathVariable("guest_idx") int guest_idx) {
+		return deleteService.deletePost(guest_idx);
+	}
 	
 }

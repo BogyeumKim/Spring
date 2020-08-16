@@ -16,5 +16,7 @@ public interface GuestDao {
 	int updatelikeup(int guest_idx);
 	
 	int updatelikedown(int guest_idx);
+
+	int deleteIdx(int guest_idx);
 	
 }
