@@ -6,6 +6,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.aia.guest.dao.GuestDao">
 
 
+<resultMap type="com.aia.guest.model.Guest_book" id="guestbook">
+<id property="guest_idx" column="guest_idx"/>
+<result property="guest_writer" column="guest_writer"/>
+<result property="guest_text" column="guest_text"/>
+<result property="guest_photo" column="guest_photo"/>
+<result property="guest_date" column="guest_date"/>
+<result property="guest_like" column="guest_like"/>
+<result property="guest_hits" column="guest_hits"/>
+<result property="x" column="x"/>
+<result property="y" column="y"/>
+<result property="member_radius" column="member_radius"/>
+<result property="member_img" column="member_img"/>
+<result property="guest_addr" column="guest_addr"/>
+
+<collection property="guestcomment" resultMap="guestcomment"></collection>
+</resultMap>
+
+
+<resultMap type="com.aia.guest.model.guest_comment" id="guestcomment">
+<id property="comment_idx" column="comment_idx" />
+<result property="member_nick" column="member_nick"/>
+<result property="comment_text" column="comment_text"/>
+<result property="comment_regdate" column="comment_regdate"/>
+<result property="comment_like" column="comment_like"/>
+<result property="comguest_idx" column="comguest_idx"/>
+</resultMap>
+
+
+
+
 
  <!-- 방명록 전체게시글 출력 -->
 <select id="selectList" parameterType="map" resultType="com.aia.guest.model.Guest_book">

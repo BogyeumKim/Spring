@@ -14,6 +14,7 @@ public class guest_comment {
 	private String comment_regdate;
 	private int comment_like;
 	private int comguest_idx;
+	
 	public int getComment_idx() {
 		return comment_idx;
 	}
