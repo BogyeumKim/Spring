@@ -3,6 +3,7 @@ package com.aia.guest.dao;
 import java.util.List;
 
 import com.aia.guest.model.Guest_book;
+import com.aia.guest.model.guest_comment;
 
 public interface GuestDao {
 
@@ -18,5 +19,7 @@ public interface GuestDao {
 	int updatelikedown(int guest_idx);
 
 	int deleteIdx(int guest_idx);
+
+	int writerCmt(guest_comment cm);
 	
 }

@@ -86,4 +86,11 @@ delete from Mangchi.guest_book where guest_idx=#{guest_idx}
 </delete>
 
 
+<insert id="writerCmt" parameterType="com.aia.guest.model.guest_comment">
+
+
+INSERT INTO Mangchi.guest_comment (member_nick,comment_text,comguest_idx) VALUES (#{member_nick},#{comment_text},#{comguest_idx});
+</insert>
+
+
 </mapper>

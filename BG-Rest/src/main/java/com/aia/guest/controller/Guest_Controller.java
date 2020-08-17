@@ -31,6 +31,7 @@ import com.aia.guest.service.GuestListService;
 import com.aia.guest.service.GuestViewService;
 import com.aia.guest.service.GuestWriteService;
 import com.aia.guest.service.GuestlikService;
+import com.aia.guest.service.writeCmtService;
 import com.sun.org.glassfish.gmbal.ParameterNames;
 
 @RestController
@@ -58,7 +59,8 @@ public class Guest_Controller {
 	@Autowired
 	private GuestDeleteService deleteService;
 	
-	
+	@Autowired
+	private writeCmtService writeCmtService;
 	
 	
 	
@@ -72,6 +74,8 @@ public class Guest_Controller {
 
 		return ListService.getList(xx, yy, member_radius);
 	}
+	
+
 	
 	
 	
@@ -111,7 +115,10 @@ public class Guest_Controller {
 	}
 	
 	
-	
+	@PostMapping("/cmt")
+	public int cmtworite(guest_comment cm) {
+		return writeCmtService.writeCmt(cm);
+	}
 	
 	
 }
