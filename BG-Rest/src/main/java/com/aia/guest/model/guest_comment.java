@@ -45,10 +45,10 @@ public class guest_comment {
 	public void setComment_like(int comment_like) {
 		this.comment_like = comment_like;
 	}
-	public int getComguest_idx() {
+	public int getCuest_idx() {
 		return comguest_idx;
 	}
-	public void setComguest_idx(int comguest_idx) {
+	public void setcomguest_idx(int comguest_idx) {
 		this.comguest_idx = comguest_idx;
 	}
 	@Override

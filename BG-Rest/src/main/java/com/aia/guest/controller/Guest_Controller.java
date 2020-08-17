@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.aia.guest.model.Guest_book;
 import com.aia.guest.model.Guest_post;
+import com.aia.guest.model.guest_comment;
 import com.aia.guest.service.GuestDeleteService;
 import com.aia.guest.service.GuestLikdownService;
 import com.aia.guest.service.GuestListService;
@@ -56,6 +57,12 @@ public class Guest_Controller {
 	
 	@Autowired
 	private GuestDeleteService deleteService;
+	
+	
+	
+	
+	
+	
 	
 //	 전체 출력
 	@GetMapping
@@ -102,5 +109,9 @@ public class Guest_Controller {
 	public int deletegb(@PathVariable("guest_idx") int guest_idx) {
 		return deleteService.deletePost(guest_idx);
 	}
+	
+	
+	
+	
 	
 }

@@ -19,12 +19,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <result property="member_radius" column="member_radius"/>
 <result property="member_img" column="member_img"/>
 <result property="guest_addr" column="guest_addr"/>
-
-<collection property="guestcomment" resultMap="guestcomment"></collection>
+<collection property="guest_comment" resultMap="guest_comment"></collection>
 </resultMap>
 
 
-<resultMap type="com.aia.guest.model.guest_comment" id="guestcomment">
+<resultMap type="com.aia.guest.model.guest_comment" id="guest_comment">
 <id property="comment_idx" column="comment_idx" />
 <result property="member_nick" column="member_nick"/>
 <result property="comment_text" column="comment_text"/>
@@ -38,16 +37,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
  <!-- 방명록 전체게시글 출력 -->
-<select id="selectList" parameterType="map" resultType="com.aia.guest.model.Guest_book">
+<select id="selectList" parameterType="map" resultMap="guestbook">
 <![CDATA[
 SELECT *
 
-FROM Mangchi.guest_book
+FROM Mangchi.guest_book left join Mangchi.guest_comment
+
+on Mangchi.guest_book.guest_idx = Mangchi.guest_comment.comguest_idx
 
 where (6371*acos(cos(radians(#{param1}))*cos(radians(x))*cos(radians(y)
+-radians(#{param2}))+sin(radians(#{param1}))*sin(radians(x)))) <= #{param3}
 
-	-radians(#{param2}))+sin(radians(#{param1}))*sin(radians(x)))) <= #{param3}
-	order by guest_idx desc
+order by guest_idx desc
 
  ]]>
 
