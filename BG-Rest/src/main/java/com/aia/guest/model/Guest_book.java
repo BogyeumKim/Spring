@@ -18,7 +18,7 @@ public class Guest_book {
 	private Double y;
 	private int member_radius;
 	private String member_img;
-	
+	private String guest_addr;
 	
 	
 	
@@ -39,7 +39,7 @@ public class Guest_book {
 
 
 	public Guest_book(int guest_idx, String guest_writer, String guest_text, String guest_photo, String guest_date,
-			int guest_like, int guest_hits, Double x, Double y, int member_radius,String member_img) {
+			int guest_like, int guest_hits, Double x, Double y, int member_radius,String member_img,String guest_addr) {
 		this.guest_idx = guest_idx;
 		this.guest_writer = guest_writer;
 		this.guest_text = guest_text;
@@ -51,6 +51,7 @@ public class Guest_book {
 		this.y = y;
 		this.member_radius = member_radius;
 		this.member_img = member_img;
+		this.guest_addr = guest_addr;
 	}
 
 	
@@ -60,8 +61,8 @@ public class Guest_book {
 
 
 
-	public Guest_book(String guest_writer, String guest_text, Double x, Double y,String member_img) {
-		this(0,guest_writer,guest_text,null,null,0,0,x,y,0,member_img);
+	public Guest_book(String guest_writer, String guest_text, Double x, Double y,String member_img,String guest_addr) {
+		this(0,guest_writer,guest_text,null,null,0,0,x,y,0,member_img,guest_addr);
 		
 	}
 	
@@ -152,13 +153,28 @@ public class Guest_book {
 	
 
 
+	public String getGuest_addr() {
+		return guest_addr;
+	}
+
+
+
+	public void setGuest_addr(String guest_addr) {
+		this.guest_addr = guest_addr;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Guest_book [guest_idx=" + guest_idx + ", guest_writer=" + guest_writer + ", guest_text=" + guest_text
 				+ ", guest_photo=" + guest_photo + ", guest_date=" + guest_date + ", guest_like=" + guest_like
 				+ ", guest_hits=" + guest_hits + ", x=" + x + ", y=" + y + ", member_radius=" + member_radius
-				+ ", member_img=" + member_img + "]";
+				+ ", member_img=" + member_img + ", guest_addr=" + guest_addr + "]";
 	}
+
+
+
 
 
 

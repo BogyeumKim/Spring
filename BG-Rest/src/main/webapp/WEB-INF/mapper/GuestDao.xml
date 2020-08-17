@@ -27,7 +27,7 @@ where (6371*acos(cos(radians(#{param1}))*cos(radians(x))*cos(radians(y)
 <!--  방명록 글쓰기 -->
 <insert id="insertPost" parameterType="com.aia.guest.model.Guest_book">
 
-INSERT INTO Mangchi.guest_book (guest_writer,guest_text,guest_photo,x,y,member_img) VALUES (#{guest_writer},#{guest_text},#{guest_photo},#{x},#{y},#{member_img})
+INSERT INTO Mangchi.guest_book (guest_writer,guest_text,guest_photo,x,y,member_img,guest_addr) VALUES (#{guest_writer},#{guest_text},#{guest_photo},#{x},#{y},#{member_img},#{guest_addr})
 
 </insert>
 

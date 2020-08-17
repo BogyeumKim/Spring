@@ -14,6 +14,8 @@ public class Guest_post {
 	private Double y;
 	private MultipartFile photo;
 	private String member_img;
+	private String guest_addr;
+	
 	
 	public String getGuest_writer() {
 		return guest_writer;
@@ -57,20 +59,25 @@ public class Guest_post {
 	}
 	
 	
-	
-	
+	public String getGuest_addr() {
+		return guest_addr;
+	}
+	public void setGuest_addr(String guest_addr) {
+		this.guest_addr = guest_addr;
+	}
 	
 	
 	public Guest_book toGuest() {
-		return new Guest_book(guest_writer,guest_text,x,y,member_img);
+		return new Guest_book(guest_writer,guest_text,x,y,member_img,guest_addr);
 	}
 	
 	
 	@Override
 	public String toString() {
 		return "Guest_post [guest_writer=" + guest_writer + ", guest_text=" + guest_text + ", x=" + x + ", y=" + y
-				+ ", photo=" + photo + ", member_img=" + member_img + "]";
+				+ ", photo=" + photo + ", member_img=" + member_img + ", guest_addr=" + guest_addr + "]";
 	}
+	
 	
 	
 
