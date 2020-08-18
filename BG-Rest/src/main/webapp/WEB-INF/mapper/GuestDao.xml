@@ -48,7 +48,7 @@ on Mangchi.guest_book.guest_idx = Mangchi.guest_comment.comguest_idx
 where (6371*acos(cos(radians(#{param1}))*cos(radians(x))*cos(radians(y)
 -radians(#{param2}))+sin(radians(#{param1}))*sin(radians(x)))) <= #{param3}
 
-order by guest_idx desc
+order by guest_idx desc limit 0,#{param4}
 
  ]]>
 

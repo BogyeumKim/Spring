@@ -8,7 +8,7 @@ import com.aia.guest.model.guest_comment;
 public interface GuestDao {
 
 	
-	List<Guest_book> selectList(double xx, double yy, Integer rr);
+	List<Guest_book> selectList(double xx, double yy, Integer rr,Integer limit);
 
 	int insertPost(Guest_book gb);
 

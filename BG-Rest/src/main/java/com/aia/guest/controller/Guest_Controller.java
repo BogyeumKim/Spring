@@ -70,9 +70,10 @@ public class Guest_Controller {
 	@GetMapping
 	public List<Guest_book> ViewList(@Param("param1") double xx,
 			@Param("param2") double yy,
-			@Param("param3") int member_radius){
+			@Param("param3") int member_radius,
+			@Param("param4") int limit){
 
-		return ListService.getList(xx, yy, member_radius);
+		return ListService.getList(xx, yy, member_radius,limit);
 	}
 	
 	
