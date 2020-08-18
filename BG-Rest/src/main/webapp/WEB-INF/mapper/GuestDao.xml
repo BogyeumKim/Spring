@@ -64,9 +64,11 @@ INSERT INTO Mangchi.guest_book (guest_writer,guest_text,guest_photo,x,y,member_i
 
 
 <!-- 상세게시글 -->
-<select id="selectByIdx" resultType="com.aia.guest.model.Guest_book">
+<select id="selectByIdx" resultMap="guestbook">
 
-	select * from  Mangchi.guest_book where guest_idx=#{guest_idx}
+SELECT * FROM Mangchi.guest_book left join Mangchi.guest_comment
+on Mangchi.guest_book.guest_idx = Mangchi.guest_comment.comguest_idx
+where Mangchi.guest_book.guest_idx=#{guest_idx};
 </select>
 
 <!-- 좋아요누름 -->

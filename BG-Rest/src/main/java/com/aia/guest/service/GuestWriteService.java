@@ -41,13 +41,11 @@ public class GuestWriteService {
 			String newFileName = System.nanoTime() + "_" + file.getOriginalFilename();
 			File saveFile=new File(realPath,newFileName);
 			file.transferTo(saveFile);
-			System.out.println("저장완료" + newFileName);
-			
+			System.out.println(realPath);
 			gb.setGuest_photo(newFileName);
 			
 			} 
 			 else { 
-				 System.out.println("저장안됨");
 				 gb.setGuest_photo(null); 
 			 }
 					 

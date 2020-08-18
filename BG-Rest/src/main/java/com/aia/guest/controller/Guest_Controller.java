@@ -75,13 +75,14 @@ public class Guest_Controller {
 		return ListService.getList(xx, yy, member_radius);
 	}
 	
-
 	
 	
 	
 //	글쓰기
-	@PostMapping
+	/* @PostMapping("/post") */
+	@RequestMapping(value = "/post", method = RequestMethod.POST)
 	public int Writing(Guest_post postreq,HttpServletRequest request) {
+		System.out.println(postreq);
 		return WriteService.boardWriter(postreq,request);
 	}
 	
@@ -114,7 +115,7 @@ public class Guest_Controller {
 		return deleteService.deletePost(guest_idx);
 	}
 	
-	
+// 댓글쓰기	
 	@PostMapping("/cmt")
 	public int cmtworite(guest_comment cm) {
 		return writeCmtService.writeCmt(cm);
