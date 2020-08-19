@@ -95,4 +95,10 @@ INSERT INTO Mangchi.guest_comment (member_nick,comment_text,comguest_idx) VALUES
 </insert>
 
 
+<select id="test" resultType="com.aia.guest.model.Guest_test">
+
+select count(*) as a from Mangchi.guest_book
+</select>
+
+
 </mapper>

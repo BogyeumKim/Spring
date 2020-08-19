@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.aia.guest.model.Guest_book;
 import com.aia.guest.model.Guest_post;
+import com.aia.guest.model.Guest_test;
 import com.aia.guest.model.guest_comment;
 import com.aia.guest.service.GuestDeleteService;
 import com.aia.guest.service.GuestLikdownService;
@@ -62,7 +63,8 @@ public class Guest_Controller {
 	@Autowired
 	private writeCmtService writeCmtService;
 	
-	
+	@Autowired
+	private com.aia.guest.service.test testservice;
 	
 	
 	
@@ -122,5 +124,10 @@ public class Guest_Controller {
 		return writeCmtService.writeCmt(cm);
 	}
 	
+	
+	@GetMapping("/test")
+	public Guest_test test() {
+		return testservice.test();
+	}
 	
 }
