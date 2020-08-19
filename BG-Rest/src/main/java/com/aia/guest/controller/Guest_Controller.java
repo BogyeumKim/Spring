@@ -27,6 +27,7 @@ import com.aia.guest.model.Guest_post;
 import com.aia.guest.model.Guest_test;
 import com.aia.guest.model.guest_comment;
 import com.aia.guest.service.GuestDeleteService;
+import com.aia.guest.service.GuestEditService;
 import com.aia.guest.service.GuestLikdownService;
 import com.aia.guest.service.GuestListService;
 import com.aia.guest.service.GuestViewService;
@@ -66,6 +67,8 @@ public class Guest_Controller {
 	@Autowired
 	private com.aia.guest.service.test testservice;
 	
+	@Autowired
+	private GuestEditService editservice;
 	
 	
 //	 전체 출력
@@ -124,10 +127,16 @@ public class Guest_Controller {
 		return writeCmtService.writeCmt(cm);
 	}
 	
-	
+// 게시글 전체 카운트	
 	@GetMapping("/test")
 	public Guest_test test() {
 		return testservice.test();
 	}
 	
+	
+	
+	@PostMapping("/edi")
+	public int edit(@PathVariable("guest_idx") int guest_idx,@Param("guest_text") String guest_text) {
+		return editservice.edit(guest_idx,guest_text);
+	}
 }

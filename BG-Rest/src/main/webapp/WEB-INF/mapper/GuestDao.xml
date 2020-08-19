@@ -101,4 +101,11 @@ select count(*) as a from Mangchi.guest_book
 </select>
 
 
+<update id="editIdx" parameterType="com.aia.guest.model.Guest_book">
+
+
+update Mangchi.guest_book set guest_text =#{guest_text} where guest_idx=#{guest_idx}
+
+</update>
+
 </mapper>

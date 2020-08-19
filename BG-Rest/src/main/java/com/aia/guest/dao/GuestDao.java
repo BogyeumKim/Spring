@@ -24,6 +24,8 @@ public interface GuestDao {
 	int writerCmt(guest_comment cm);
 
 	Guest_test test();
+
+	int editIdx(int guest_idx,String guest_text);
 	
 	
 }
