@@ -9,7 +9,7 @@ import com.aia.guest.model.guest_comment;
 public interface GuestDao {
 
 	
-	List<Guest_book> selectList(double xx, double yy, Integer rr,Integer limit);
+	List<Guest_book> selectList(double xx, double yy, int rr,int limit);
 
 	int insertPost(Guest_book gb);
 
@@ -23,9 +23,9 @@ public interface GuestDao {
 
 	int writerCmt(guest_comment cm);
 
-	Guest_test test();
-
 	int editIdx(int guest_idx,String guest_text);
+
+	int test(double x, double y, int r);
 	
 	
 }

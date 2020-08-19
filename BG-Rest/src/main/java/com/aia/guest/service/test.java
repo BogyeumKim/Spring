@@ -17,9 +17,12 @@ public class test {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public Guest_test test() {
+	public int atest(double x, double y, int r) {
 		
 		dao=template.getMapper(GuestDao.class);
-		return dao.test();
+		return dao.test(x,y,r);
 	}
+	
+
+
 }

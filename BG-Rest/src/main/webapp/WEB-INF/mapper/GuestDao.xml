@@ -87,20 +87,21 @@ where Mangchi.guest_book.guest_idx=#{guest_idx};
 delete from Mangchi.guest_book where guest_idx=#{guest_idx}
 </delete>
 
-
+<!-- 댓글쓰기 -->
 <insert id="writerCmt" parameterType="com.aia.guest.model.guest_comment">
 
 
 INSERT INTO Mangchi.guest_comment (member_nick,comment_text,comguest_idx) VALUES (#{member_nick},#{comment_text},#{comguest_idx});
 </insert>
 
-
-<select id="test" resultType="com.aia.guest.model.Guest_test">
-
-select count(*) as a from Mangchi.guest_book
-</select>
-
-
+<!-- 토탈카운트 -->
+<select id="test" parameterType="map" resultType="int">
+<![CDATA[
+select count(*) from Mangchi.guest_book where (6371*acos(cos(radians(#{param1}))*cos(radians(x))*cos(radians(y)
+-radians(#{param2}))+sin(radians(#{param1}))*sin(radians(x)))) < #{param3};
+ ]]>
+ </select>
+<!-- 수정 -->
 <update id="editIdx" parameterType="com.aia.guest.model.Guest_book">
 
 

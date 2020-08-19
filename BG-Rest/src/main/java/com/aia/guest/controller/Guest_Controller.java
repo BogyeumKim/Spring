@@ -77,7 +77,7 @@ public class Guest_Controller {
 			@Param("param2") double yy,
 			@Param("param3") int member_radius,
 			@Param("param4") int limit){
-
+		
 		return ListService.getList(xx, yy, member_radius,limit);
 	}
 	
@@ -129,12 +129,12 @@ public class Guest_Controller {
 	
 // 게시글 전체 카운트	
 	@GetMapping("/test")
-	public Guest_test test() {
-		return testservice.test();
+	public int test(@RequestParam("x") double x ,@RequestParam("y") double y,@RequestParam("r") int r) {
+		return testservice.atest(x,y,r);
 	}
 	
 	
-	
+	/* 수정 */	
 	@PostMapping("/edi")
 	public int edit(@PathVariable("guest_idx") int guest_idx,@Param("guest_text") String guest_text) {
 		return editservice.edit(guest_idx,guest_text);
