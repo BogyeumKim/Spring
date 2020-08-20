@@ -136,7 +136,7 @@ public class Guest_Controller {
 	
 	/* 수정 */	
 	@PostMapping("/edi")
-	public int edit(@PathVariable("guest_idx") int guest_idx,@Param("guest_text") String guest_text) {
+	public int edit(@RequestParam("guest_idx") int guest_idx,@RequestParam("guest_text") String guest_text) {
 		return editservice.edit(guest_idx,guest_text);
 	}
 }
