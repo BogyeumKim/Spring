@@ -102,10 +102,10 @@ select count(*) from Mangchi.guest_book where (6371*acos(cos(radians(#{param1}))
  ]]>
  </select>
 <!-- 수정 -->
-<update id="editIdx" parameterType="map">
+<update id="editIdx" parameterType="com.aia.guest.model.Guest_book">
 
 
-update Mangchi.guest_book set guest_text =#{param2} where guest_idx=#{param1}
+update Mangchi.guest_book set guest_text =#{guest_text}, guest_photo=#{guest_photo} where guest_idx=#{guest_idx}
 
 </update>
 

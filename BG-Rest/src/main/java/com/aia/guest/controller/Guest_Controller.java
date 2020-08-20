@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.aia.guest.model.Guest_book;
+import com.aia.guest.model.Guest_edit;
 import com.aia.guest.model.Guest_post;
 import com.aia.guest.model.Guest_test;
 import com.aia.guest.model.guest_comment;
@@ -134,9 +135,11 @@ public class Guest_Controller {
 	}
 	
 	
-	/* 수정 */	
+//  수정	
 	@PostMapping("/edi")
-	public int edit(@RequestParam("guest_idx") int guest_idx,@RequestParam("guest_text") String guest_text) {
-		return editservice.edit(guest_idx,guest_text);
+	public int edit( HttpServletRequest request, Guest_edit edit) {
+		System.out.println(edit.toString());
+		return editservice.edit(request,edit);
+		//return 0;
 	}
 }

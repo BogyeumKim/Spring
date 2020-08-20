@@ -72,6 +72,8 @@ public class MemberEditService {
 					oldFile.delete();
 				}
 
+			}else {
+				member.setUphoto(editRequest.getOldFile());
 			}
 
 			// 데이터베이스 : update
