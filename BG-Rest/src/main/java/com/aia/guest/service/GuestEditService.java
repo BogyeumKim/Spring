@@ -28,48 +28,50 @@ public class GuestEditService {
 		dao=template.getMapper(GuestDao.class);
 		
 		int result = 0;
-		
-		
-		
 		Guest_book gb = edit.editToGb();
-		MultipartFile file = edit.getPhoto();
 		
 		
-		
-	
-	if(file !=null && file.isEmpty() && file.getSize()>0) {
-		String uri = "/upload";
-		String realPath = request.getSession().getServletContext().getRealPath(uri);
-		String newFileName = System.nanoTime() + "_" + file.getOriginalFilename();
-		
-		File saveFile=new File(realPath,newFileName);//내컴터+나노초파일사진
 		try {
+		MultipartFile file = edit.getPhoto();
+if(file != null && !file.isEmpty() && file.getSize() > 0) {
+			
+			String uri = "/upload";
+			String realPath = request.getSession().getServletContext().getRealPath(uri);
+			String newFileName = System.nanoTime() + "_" + file.getOriginalFilename();
+			File saveFile=new File(realPath,newFileName);
 			file.transferTo(saveFile);
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} // 실제저장
-		System.out.println(realPath);
+			System.out.println("수정저장경로 : " +realPath);
+			gb.setGuest_photo(newFileName);
 		
-		gb.setGuest_photo(newFileName); // 새주소경로
-		
-		 File oldFile = new File(realPath,edit.getOldFile());
-		 
-		 if(oldFile.exists()) {
-			 oldFile.delete();
-		 }
+			
+			if(edit.getOldFile()!=null) {
+			 File oldFile = new File(realPath,edit.getOldFile());
+			
+			 System.out.println("올드파일 : "+oldFile);
+			 
+			 if(oldFile.exists()) {
+				 oldFile.delete();
+			 }
+			}
+			 
 		
 
 		}//if끝
+	 else { 
+		 gb.setGuest_photo(edit.getOldFile());
+		 System.out.println("널게스트포토 : "+gb.getGuest_photo());
+	 }
+			 
 	
-	else {
-		gb.setGuest_photo(edit.getOldFile());
+result=dao.editIdx(gb);
+
+	} catch (IllegalStateException | IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
-			
-		result=dao.editIdx(gb);
-		return result;
-	}
+return result;
+		//return 0;
 }
+
+}
+

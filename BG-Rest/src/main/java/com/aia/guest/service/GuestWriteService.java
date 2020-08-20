@@ -45,6 +45,8 @@ public class GuestWriteService {
 			gb.setGuest_photo(newFileName);
 			
 			} 
+		
+		
 			 else { 
 				 gb.setGuest_photo(null); 
 			 }

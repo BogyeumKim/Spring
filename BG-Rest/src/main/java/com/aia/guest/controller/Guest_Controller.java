@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.aia.guest.model.Guest_book;
 import com.aia.guest.model.Guest_edit;
@@ -117,9 +118,12 @@ public class Guest_Controller {
 	
 // 게시글 삭제
 	
-	@DeleteMapping("/{guest_idx}")
-	public int deletegb(@PathVariable("guest_idx") int guest_idx) {
-		return deleteService.deletePost(guest_idx);
+	@DeleteMapping("/delete")
+	public int deletegb(@RequestParam(value = "guest_idx") int guest_idx,@RequestParam(value = "guest_photo") String photo) {
+		//return deleteService.deletePost(guest_idx);
+		System.out.println(guest_idx);
+		System.out.println(photo);
+		return 0;
 	}
 	
 // 댓글쓰기	
@@ -137,7 +141,7 @@ public class Guest_Controller {
 	
 //  수정	
 	@PostMapping("/edi")
-	public int edit( HttpServletRequest request, Guest_edit edit) {
+	public int edit(HttpServletRequest request , Guest_edit edit) {
 		System.out.println(edit.toString());
 		return editservice.edit(request,edit);
 		//return 0;
