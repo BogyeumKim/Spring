@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -75,7 +74,6 @@ public class Guest_Controller {
 	
 	
 //	 전체 출력
-	@CrossOrigin
 	@GetMapping
 	public List<Guest_book> ViewList(@Param("param1") double xx,
 			@Param("param2") double yy,
@@ -89,9 +87,8 @@ public class Guest_Controller {
 	
 	
 //	글쓰기
-	
-	//@RequestMapping(value = "/post", method = RequestMethod.POST)
-	@PostMapping("/post") 
+	/* @PostMapping("/post") */
+	@RequestMapping(value = "/post", method = RequestMethod.POST)
 	public int Writing(Guest_post postreq,HttpServletRequest request) {
 		System.out.println(postreq);
 		return WriteService.boardWriter(postreq,request);
@@ -99,7 +96,6 @@ public class Guest_Controller {
 	
 
 //한개 출력
-	@CrossOrigin
 	@GetMapping("/{guest_idx}")
 	public Guest_book viewgb(@PathVariable("guest_idx") int guest_idx) {
 		return viewService.getView(guest_idx);
@@ -107,14 +103,12 @@ public class Guest_Controller {
 	
 	
 // 좋아요증감
-	@CrossOrigin
 	@PutMapping("/plus/{guest_idx}")
 	public int likeup(@PathVariable("guest_idx") int guest_idx) {
 		return likeupService.likeup(guest_idx);
 	}
 	
 // 좋아요감소
-	@CrossOrigin
 	@PutMapping("/mi/{guest_idx}")
 	public int likedown(@PathVariable("guest_idx") int guest_idx) {
 		int a =likedownService.likedown(guest_idx);
@@ -123,24 +117,22 @@ public class Guest_Controller {
 	
 	
 // 게시글 삭제
-	@CrossOrigin
-	@DeleteMapping("/deletec")
-	public int deletegb(@RequestParam("guest_idx") int guest_idx,
-			@RequestParam("guest_photo") String photo,HttpServletRequest req) {
+	
+	@DeleteMapping("/delete")
+	public int deletegb(@RequestParam(value = "guest_idx") int guest_idx,@RequestParam(value = "guest_photo") String photo) {
+		//return deleteService.deletePost(guest_idx);
 		System.out.println(guest_idx);
 		System.out.println(photo);
-		return deleteService.deletePost(guest_idx,photo,req);
+		return 0;
 	}
 	
 // 댓글쓰기	
-	@CrossOrigin
 	@PostMapping("/cmt")
 	public int cmtworite(guest_comment cm) {
 		return writeCmtService.writeCmt(cm);
 	}
 	
 // 게시글 전체 카운트	
-	@CrossOrigin
 	@GetMapping("/test")
 	public int test(@RequestParam("x") double x ,@RequestParam("y") double y,@RequestParam("r") int r) {
 		return testservice.atest(x,y,r);
@@ -148,7 +140,6 @@ public class Guest_Controller {
 	
 	
 //  수정	
-	@CrossOrigin
 	@PostMapping("/edi")
 	public int edit(HttpServletRequest request , Guest_edit edit) {
 		System.out.println(edit.toString());
