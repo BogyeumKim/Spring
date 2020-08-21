@@ -40,7 +40,7 @@ if(file != null && !file.isEmpty() && file.getSize() > 0) {
 			String newFileName = System.nanoTime() + "_" + file.getOriginalFilename();
 			File saveFile=new File(realPath,newFileName);
 			file.transferTo(saveFile);
-			System.out.println("수정저장경로 : " +realPath); //
+			System.out.println("수정저장경로 : " +realPath);
 			gb.setGuest_photo(newFileName);
 		
 			

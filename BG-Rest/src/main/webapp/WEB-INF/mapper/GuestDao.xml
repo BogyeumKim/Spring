@@ -56,7 +56,7 @@ order by guest_idx desc limit 0,#{param4}
 </select>
 
 <!--  방명록 글쓰기 -->
-<insert id="insertPost" parameterType="com.aia.guest.model.Guest_bookPost">
+<insert id="insertPost" parameterType="com.aia.guest.model.Guest_book">
 
 INSERT INTO Mangchi.guest_book (guest_writer,guest_text,guest_photo,x,y,member_img,guest_addr) VALUES (#{guest_writer},#{guest_text},#{guest_photo},#{x},#{y},#{member_img},#{guest_addr})
 

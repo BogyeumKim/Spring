@@ -67,17 +67,8 @@ public class Guest_post {
 	}
 	
 	
-	
-	public Guest_bookPost togb() {
-		Guest_bookPost a = new Guest_bookPost();
-		a.setGuest_writer(guest_writer);
-		a.setGuest_text(guest_text);
-		a.setX(x);
-		a.setY(y);
-		a.setMember_img(member_img);
-		a.setGuest_addr(guest_addr);
-		return a;
-		
+	public Guest_book toGuest() {
+		return new Guest_book(guest_writer,guest_text,x,y,member_img,guest_addr);
 	}
 	
 	

@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.aia.guest.dao.GuestDao;
 import com.aia.guest.model.Guest_book;
-import com.aia.guest.model.Guest_bookPost;
 import com.aia.guest.model.Guest_post;
 
 @Service
@@ -27,7 +26,7 @@ public class GuestWriteService {
 	
 	public int boardWriter(Guest_post postreq, HttpServletRequest request) {
 		
-		Guest_bookPost gb = postreq.togb();
+		Guest_book gb = postreq.toGuest();
 		
 		dao=template.getMapper(GuestDao.class);
 		
