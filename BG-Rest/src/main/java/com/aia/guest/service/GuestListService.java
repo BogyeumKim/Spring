@@ -21,6 +21,10 @@ public class GuestListService {
 	
 	public List<Guest_book> getList(double xx, double yy,int member_radius,int limit){
 		dao=template.getMapper(GuestDao.class);
+		
+		
+		//System.out.println(dao.selectList(xx, yy, member_radius, limit));
+		
 		return dao.selectList(xx, yy, member_radius,limit);
 		
 	}

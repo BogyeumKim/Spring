@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +31,7 @@ import com.aia.guest.model.Guest_edit;
 import com.aia.guest.model.Guest_post;
 import com.aia.guest.model.Guest_test;
 import com.aia.guest.model.guest_comment;
+import com.aia.guest.model.guest_likes;
 import com.aia.guest.service.GuestDeleteService;
 import com.aia.guest.service.GuestEditService;
 import com.aia.guest.service.GuestLikdownService;
@@ -109,16 +111,19 @@ public class Guest_Controller {
 	
 // 좋아요증감
 	@CrossOrigin
-	@PutMapping("/plus/{guest_idx}")
-	public int likeup(@PathVariable("guest_idx") int guest_idx) {
-		return likeupService.likeup(guest_idx);
+	@PostMapping("/plus/{guest_idx}")
+	public int likeup(guest_likes lk,@PathVariable("guest_idx") int guest_idx,@RequestBody String guest_nick) {
+		lk.setGuestlike_idx(guest_idx);
+		lk.setGuestlike_nick(guest_nick);
+		return likeupService.likeup(lk);
+		//return 0;
 	}
 	
 // 좋아요감소
 	@CrossOrigin
-	@PutMapping("/mi/{guest_idx}")
-	public int likedown(@PathVariable("guest_idx") int guest_idx) {
-		int a =likedownService.likedown(guest_idx);
+	@DeleteMapping("/mi/{guest_idx}")
+	public int likedown(@PathVariable("guest_idx") int guest_idx,@RequestBody String guest_nick) {
+		int a =likedownService.likedown(guest_idx,guest_nick);
 		return a;
 	}
 	

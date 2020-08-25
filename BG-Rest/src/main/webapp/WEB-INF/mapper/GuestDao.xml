@@ -20,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <result property="member_img" column="member_img"/>
 <result property="guest_addr" column="guest_addr"/>
 <collection property="guest_comment" resultMap="guest_comment"></collection>
+<collection property="guest_likes" resultMap="guest_likes"></collection>
 </resultMap>
 
 
@@ -34,6 +35,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 
+<resultMap type="com.aia.guest.model.guest_likes" id="guest_likes">
+<result property="guestlike_idx" column="guestlike_idx"/>
+<result property="guestlike_nick" column="guestlike_nick"/>
+</resultMap>
+
+
+
+
+
+
+
+
+
 
 
  <!-- 방명록 전체게시글 출력 -->
@@ -42,8 +56,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 SELECT *
 
 FROM Mangchi.guest_book left join Mangchi.guest_comment
-
 on Mangchi.guest_book.guest_idx = Mangchi.guest_comment.comguest_idx
+left join Mangchi.guest_like
+on  Mangchi.guest_book.guest_idx= Mangchi.guest_like.guestlike_idx
 
 where (6371*acos(cos(radians(#{param1}))*cos(radians(x))*cos(radians(y)
 -radians(#{param2}))+sin(radians(#{param1}))*sin(radians(x)))) <= #{param3}
@@ -71,15 +86,6 @@ on Mangchi.guest_book.guest_idx = Mangchi.guest_comment.comguest_idx
 where Mangchi.guest_book.guest_idx=#{guest_idx};
 </select>
 
-<!-- 좋아요누름 -->
-<update id="updatelikeup" parameterType="com.aia.guest.model.Guest_book"  >
-<![CDATA[update Mangchi.guest_book set guest_like = ifnull(guest_like,0)+1 where guest_idx=#{guest_idx}]]>
-</update>
-
-<!-- 좋아요취소 -->
-<update id="updatelikedown" parameterType="com.aia.guest.model.Guest_book"  >
-<![CDATA[update Mangchi.guest_book set guest_like = ifnull(guest_like,0)-1 where guest_idx=#{guest_idx}]]>
-</update>
 
 
 <!-- 게시글삭제 -->
@@ -101,12 +107,48 @@ select count(*) from Mangchi.guest_book where (6371*acos(cos(radians(#{param1}))
 -radians(#{param2}))+sin(radians(#{param1}))*sin(radians(x)))) < #{param3};
  ]]>
  </select>
+ 
 <!-- 수정 -->
 <update id="editIdx" parameterType="com.aia.guest.model.Guest_book">
-
-
 update Mangchi.guest_book set guest_text =#{guest_text}, guest_photo=#{guest_photo} where guest_idx=#{guest_idx}
-
 </update>
+
+
+
+
+<!-- 좋아요누름 -->
+<!-- <![CDATA[update Mangchi.guest_book set guest_like = ifnull(guest_like,0)+1 where guest_idx=#{guest_idx}]]> -->
+<insert id="updatelikeup" parameterType="com.aia.guest.model.guest_likes"  >
+insert into Mangchi.guest_like  (guestlike_idx,guestlike_nick) value (#{guestlike_idx},#{guestlike_nick})
+</insert>
+
+<!-- 좋아요취소 -->
+<!-- <![CDATA[update Mangchi.guest_book set guest_like = ifnull(guest_like,0)-1 where guest_idx=#{guest_idx}]]> -->
+<delete id="updatelikedown" parameterType="map"  >
+delete from Mangchi.guest_like where guest_idx=#{param1} and guest_nick=#{param2}
+</delete>
+
+<!-- 동일게시글 좋아요 조회 -->
+<select id="checklike" parameterType="map" resultType="int">
+select count(*) from Mangchi.guest_like where guest_idx=#{param1} and guest_nick=#{param2}
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </mapper>

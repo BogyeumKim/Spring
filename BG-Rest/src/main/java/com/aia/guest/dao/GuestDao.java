@@ -8,6 +8,7 @@ import com.aia.guest.model.Guest_book;
 import com.aia.guest.model.Guest_edit;
 import com.aia.guest.model.Guest_test;
 import com.aia.guest.model.guest_comment;
+import com.aia.guest.model.guest_likes;
 
 public interface GuestDao {
 
@@ -18,9 +19,9 @@ public interface GuestDao {
 
 	Guest_book selectByIdx(int guest_idx);
 
-	int updatelikeup(int guest_idx);
+	int updatelikeup(guest_likes lk);
 	
-	int updatelikedown(int guest_idx);
+	int updatelikedown(int guest_idx, String guest_nick);
 
 	int deleteIdx(int guest_idx);
 
@@ -30,6 +31,9 @@ public interface GuestDao {
 	int test(double x, double y, int r);
 
 	int editIdx(Guest_book gb);
+	
+	
+	int getguest_like(int guest_idx,String guest_nick);
 	
 	
 }

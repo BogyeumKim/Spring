@@ -15,9 +15,9 @@ public class GuestLikdownService {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public int likedown(int guest_idx) {
+	public int likedown(int guest_idx, String guest_nick) {
 		dao=template.getMapper(GuestDao.class);
-		return dao.updatelikedown(guest_idx);
+		return dao.updatelikedown(guest_idx,guest_nick);
 		
 	}
 	

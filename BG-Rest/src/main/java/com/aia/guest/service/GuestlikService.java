@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.aia.guest.dao.GuestDao;
 import com.aia.guest.model.Guest_book;
+import com.aia.guest.model.guest_likes;
 
 @Service
 public class GuestlikService {
@@ -15,9 +16,9 @@ public class GuestlikService {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public int likeup(int guest_idx) {
+	public int likeup(guest_likes lk) {
 		dao=template.getMapper(GuestDao.class);
-		return dao.updatelikeup(guest_idx);
+		return dao.updatelikeup(lk);
 		
 	}
 	
