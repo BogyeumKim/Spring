@@ -9,6 +9,8 @@ public class guest_likes {
 
 	private int guestlike_idx;
 	private String guestlike_nick;
+	
+	
 	public int getGuestlike_idx() {
 		return guestlike_idx;
 	}

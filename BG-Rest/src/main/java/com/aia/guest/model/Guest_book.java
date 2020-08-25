@@ -22,12 +22,25 @@ public class Guest_book {
 	private String guest_addr;
 	private List<guest_comment> guest_comment;
 	private List<guest_likes> guest_likes;
+	private int checkLikes;
 	
 	
 	
 	
 
 	
+	public int getCheckLikes() {
+		return checkLikes;
+	}
+
+
+
+	public void setCheckLikes(int checkLikes) {
+		this.checkLikes = checkLikes;
+	}
+
+
+
 	public String getMember_img() {
 		return member_img;
 	}

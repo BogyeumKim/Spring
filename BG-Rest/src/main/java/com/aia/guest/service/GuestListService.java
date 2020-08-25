@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.aia.guest.dao.GuestDao;
 import com.aia.guest.model.Guest_book;
+import com.aia.guest.model.guest_likes;
 
 @Service
 public class GuestListService {
@@ -23,7 +24,9 @@ public class GuestListService {
 		dao=template.getMapper(GuestDao.class);
 		
 		
+		
 		//System.out.println(dao.selectList(xx, yy, member_radius, limit));
+		//return null;
 		
 		return dao.selectList(xx, yy, member_radius,limit);
 		

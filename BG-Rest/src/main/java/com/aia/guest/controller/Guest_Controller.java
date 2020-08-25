@@ -115,6 +115,8 @@ public class Guest_Controller {
 	public int likeup(guest_likes lk,@PathVariable("guest_idx") int guest_idx,@RequestBody String guest_nick) {
 		lk.setGuestlike_idx(guest_idx);
 		lk.setGuestlike_nick(guest_nick);
+		System.out.println(lk.getGuestlike_idx());
+		System.out.println(lk.getGuestlike_nick());
 		return likeupService.likeup(lk);
 		//return 0;
 	}

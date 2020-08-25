@@ -129,8 +129,8 @@ delete from Mangchi.guest_like where guest_idx=#{param1} and guest_nick=#{param2
 </delete>
 
 <!-- 동일게시글 좋아요 조회 -->
-<select id="checklike" parameterType="map" resultType="int">
-select count(*) from Mangchi.guest_like where guest_idx=#{param1} and guest_nick=#{param2}
+<select id="getguest_like" parameterType="String" resultType="com.aia.guest.model.guest_likes">
+select * from Mangchi.guest_like where guestlike_nick=#{guestlike_nick}
 </select>
 
 

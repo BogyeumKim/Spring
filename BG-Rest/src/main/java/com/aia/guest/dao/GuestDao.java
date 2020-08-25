@@ -33,7 +33,7 @@ public interface GuestDao {
 	int editIdx(Guest_book gb);
 	
 	
-	int getguest_like(int guest_idx,String guest_nick);
+	int getguest_like();
 	
 	
 }
