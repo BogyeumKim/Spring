@@ -83,9 +83,11 @@ public class Guest_Controller {
 	public List<Guest_book> ViewList(@Param("param1") double xx,
 			@Param("param2") double yy,
 			@Param("param3") int member_radius,
-			@Param("param4") int limit){
+			@Param("param4") int limit,
+			@RequestParam("nick") String nick){
 		
-		return ListService.getList(xx, yy, member_radius,limit);
+		
+		return ListService.getList(xx, yy, member_radius,limit,nick);
 	}
 	
 	
@@ -125,7 +127,10 @@ public class Guest_Controller {
 	@CrossOrigin
 	@DeleteMapping("/mi/{guest_idx}")
 	public int likedown(@PathVariable("guest_idx") int guest_idx,@RequestBody String guest_nick) {
+		System.out.println(guest_nick);
+		System.out.println(guest_idx);
 		int a =likedownService.likedown(guest_idx,guest_nick);
+		//return 0;
 		return a;
 	}
 	

@@ -22,6 +22,8 @@ public class Guest_book {
 	private String guest_addr;
 	private List<guest_comment> guest_comment;
 	private List<guest_likes> guest_likes;
+	
+	
 	private int checkLikes;
 	
 	

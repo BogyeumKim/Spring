@@ -20,15 +20,28 @@ public class GuestListService {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public List<Guest_book> getList(double xx, double yy,int member_radius,int limit){
+	public List<Guest_book> getList(double xx, double yy,int member_radius,int limit, String nick){
 		dao=template.getMapper(GuestDao.class);
 		
 		
+		List<Guest_book> list = dao.selectList(xx, yy, member_radius,limit);
+		List<guest_likes> likeList = dao.getguest_like(nick); 
+		for(int i =0;i<list.size();i++) {
+			list.get(i).setCheckLikes(0);
+			for(int j =0; j<likeList.size();j++) {
+				if(likeList.get(j).getGuestlike_idx()==list.get(i).getGuest_idx()) {
+					list.get(i).setCheckLikes(1);
+				}
+			}
+		}
+
+
+		return list;
 		
 		//System.out.println(dao.selectList(xx, yy, member_radius, limit));
 		//return null;
 		
-		return dao.selectList(xx, yy, member_radius,limit);
+		//return dao.selectList(xx, yy, member_radius,limit);
 		
 	}
 	

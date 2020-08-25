@@ -125,7 +125,7 @@ insert into Mangchi.guest_like  (guestlike_idx,guestlike_nick) value (#{guestlik
 <!-- 좋아요취소 -->
 <!-- <![CDATA[update Mangchi.guest_book set guest_like = ifnull(guest_like,0)-1 where guest_idx=#{guest_idx}]]> -->
 <delete id="updatelikedown" parameterType="map"  >
-delete from Mangchi.guest_like where guest_idx=#{param1} and guest_nick=#{param2}
+delete from Mangchi.guest_like where guestlike_idx=#{param1} and guestlike_nick=#{param2}
 </delete>
 
 <!-- 동일게시글 좋아요 조회 -->
