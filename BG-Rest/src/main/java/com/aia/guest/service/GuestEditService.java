@@ -47,8 +47,7 @@ if(file != null && !file.isEmpty() && file.getSize() > 0) {
 			if(edit.getOldFile()!=null) {
 			 File oldFile = new File(realPath,edit.getOldFile());
 			
-			 System.out.println("올드파일 : "+oldFile);
-			 
+			 System.out.println("변경되며 삭제될 기존파일 : "+oldFile);
 			 if(oldFile.exists()) {
 				 oldFile.delete();
 			 }
@@ -58,8 +57,9 @@ if(file != null && !file.isEmpty() && file.getSize() > 0) {
 
 		}//if끝
 	 else { 
-		 gb.setGuest_photo(edit.getOldFile());
-		 System.out.println("널게스트포토 : "+gb.getGuest_photo());
+				 
+					 gb.setGuest_photo(edit.getOldFile());
+				 System.out.println("널게스트포토 : "+gb.getGuest_photo());
 	 }
 			 
 	

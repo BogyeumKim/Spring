@@ -19,10 +19,14 @@ public interface GuestDao {
 
 	Guest_book selectByIdx(int guest_idx);
 
-	int updatelikeup(guest_likes lk);
+	int updatelikeup(guest_likes lk); // guest_like Table eidx비교후 check값 0,1구분 
 	
-	int updatelikedown(int guest_idx, String guest_nick);
+	int updatelikedown(int guest_idx, String guest_nick); //guest_like Table idx비교후 check값 0,1구분 
 
+	int likeup(int guest_idx); // guest_book Table like증감
+	
+	int likedown(int guest_idx); // guest_book Table like감소
+	
 	int deleteIdx(int guest_idx);
 
 	int writerCmt(guest_comment cm);
@@ -35,5 +39,8 @@ public interface GuestDao {
 	
 	List<guest_likes> getguest_like(String nick);
 	
+	
+	List<Guest_book> selectSessionList(String nick);
+
 	
 }

@@ -39,6 +39,7 @@ import com.aia.guest.service.GuestListService;
 import com.aia.guest.service.GuestViewService;
 import com.aia.guest.service.GuestWriteService;
 import com.aia.guest.service.GuestlikService;
+import com.aia.guest.service.SessionViewService;
 import com.aia.guest.service.writeCmtService;
 import com.sun.org.glassfish.gmbal.ParameterNames;
 
@@ -77,6 +78,10 @@ public class Guest_Controller {
 	private GuestEditService editservice;
 	
 	
+	@Autowired
+	private SessionViewService sessionViewService;
+	
+	
 //	 전체 출력
 	@CrossOrigin
 	@GetMapping
@@ -106,31 +111,52 @@ public class Guest_Controller {
 //한개 출력
 	@CrossOrigin
 	@GetMapping("/{guest_idx}")
-	public Guest_book viewgb(@PathVariable("guest_idx") int guest_idx) {
-		return viewService.getView(guest_idx);
+	public Guest_book viewgb(@PathVariable("guest_idx") int guest_idx,
+			@RequestParam("nick") String nick) {
+		return viewService.getView(guest_idx,nick);
 	}
 	
 	
-// 좋아요증감
+// 좋아요 1인당 1개 증감 
 	@CrossOrigin
 	@PostMapping("/plus/{guest_idx}")
 	public int likeup(guest_likes lk,@PathVariable("guest_idx") int guest_idx,@RequestBody String guest_nick) {
 		lk.setGuestlike_idx(guest_idx);
 		lk.setGuestlike_nick(guest_nick);
-		System.out.println(lk.getGuestlike_idx());
-		System.out.println(lk.getGuestlike_nick());
+		//System.out.println(lk.getGuestlike_idx());
+		//System.out.println(lk.getGuestlike_nick());
 		return likeupService.likeup(lk);
 		//return 0;
 	}
 	
-// 좋아요감소
+// 좋아요 1인당 1개 감소 
 	@CrossOrigin
 	@DeleteMapping("/mi/{guest_idx}")
 	public int likedown(@PathVariable("guest_idx") int guest_idx,@RequestBody String guest_nick) {
-		System.out.println(guest_nick);
-		System.out.println(guest_idx);
+		//System.out.println(guest_nick);
+		//System.out.println(guest_idx);
 		int a =likedownService.likedown(guest_idx,guest_nick);
 		//return 0;
+		return a;
+	}
+	
+	
+	
+	
+//	좋아요 숫자증감
+	@CrossOrigin
+	@PutMapping("/pluscount/{guest_idx}")
+	public int likeup(@PathVariable("guest_idx") int guest_idx) {
+		return likeupService.likeupcount(guest_idx);
+	}
+	
+	
+	
+//	좋아요 숫자감소
+	@CrossOrigin
+	@PutMapping("/micount/{guest_idx}")
+	public int likedown(@PathVariable("guest_idx") int guest_idx) {
+		int a =likedownService.likedowncount(guest_idx);
 		return a;
 	}
 	
@@ -166,7 +192,21 @@ public class Guest_Controller {
 	@PostMapping("/edi")
 	public int edit(HttpServletRequest request , Guest_edit edit) {
 		System.out.println(edit.toString());
+		if(edit.getOldFile().trim().length()==0) {
+			edit.setOldFile(null);
+		}
 		return editservice.edit(request,edit);
 		//return 0;
 	}
+	
+	
+	
+// 자기가쓴글만 출력
+	@CrossOrigin
+	@GetMapping("/loginnick")
+	public List<Guest_book> bk(@Param("bb") String bb ) {
+		System.out.println(bb);
+		return sessionViewService.getnickListView(bb);
+	}
+	
 }

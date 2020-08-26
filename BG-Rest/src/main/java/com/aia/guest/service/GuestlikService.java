@@ -22,4 +22,10 @@ public class GuestlikService {
 		
 	}
 	
+	public int likeupcount(int guest_idx) {
+		dao=template.getMapper(GuestDao.class);
+		return dao.likeup(guest_idx);
+	}
+	
+	
 }

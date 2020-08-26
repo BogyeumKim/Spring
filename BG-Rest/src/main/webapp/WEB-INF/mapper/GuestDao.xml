@@ -44,12 +44,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 
-
-
-
-
-
-
  <!-- 방명록 전체게시글 출력 -->
 <select id="selectList" parameterType="map" resultMap="guestbook">
 <![CDATA[
@@ -117,16 +111,23 @@ update Mangchi.guest_book set guest_text =#{guest_text}, guest_photo=#{guest_pho
 
 
 <!-- 좋아요누름 -->
-<!-- <![CDATA[update Mangchi.guest_book set guest_like = ifnull(guest_like,0)+1 where guest_idx=#{guest_idx}]]> -->
 <insert id="updatelikeup" parameterType="com.aia.guest.model.guest_likes"  >
 insert into Mangchi.guest_like  (guestlike_idx,guestlike_nick) value (#{guestlike_idx},#{guestlike_nick})
 </insert>
 
+<update id="likeup" parameterType="int">
+<![CDATA[update Mangchi.guest_book set guest_like = ifnull(guest_like,0)+1 where guest_idx=#{guest_idx}]]>
+</update>
+
 <!-- 좋아요취소 -->
-<!-- <![CDATA[update Mangchi.guest_book set guest_like = ifnull(guest_like,0)-1 where guest_idx=#{guest_idx}]]> -->
 <delete id="updatelikedown" parameterType="map"  >
 delete from Mangchi.guest_like where guestlike_idx=#{param1} and guestlike_nick=#{param2}
 </delete>
+
+<update id="likedown" parameterType="int">
+<![CDATA[update Mangchi.guest_book set guest_like = ifnull(guest_like,0)-1 where guest_idx=#{guest_idx}]]>
+</update>
+
 
 <!-- 동일게시글 좋아요 조회 -->
 <select id="getguest_like" parameterType="String" resultType="com.aia.guest.model.guest_likes">
@@ -136,10 +137,12 @@ select * from Mangchi.guest_like where guestlike_nick=#{guestlike_nick}
 
 
 
+<!-- 접속한사람이 게시글쓴거 -->
+<select id="selectSessionList" parameterType="String" resultMap="guestbook">
+SELECT * FROM Mangchi.guest_book
+where Mangchi.guest_book.guest_writer=#{nick};
 
-
-
-
+</select>
 
 
 
