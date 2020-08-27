@@ -42,5 +42,9 @@ public interface GuestDao {
 	
 	List<Guest_book> selectSessionList(String nick);
 
+	guest_comment selectCmtIdx(int comment_idx);
+
+	int deleteCmtIdx(int comment_idx);
+
 	
 }

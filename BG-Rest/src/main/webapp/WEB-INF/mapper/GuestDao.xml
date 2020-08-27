@@ -146,9 +146,18 @@ where Mangchi.guest_book.guest_writer=#{nick};
 
 
 
+<!-- 댓글한개 정보 -->
+<select id="selectCmtIdx" parameterType="int" resultMap="guest_comment">
+
+select * from Mangchi.guest_comment where comment_idx=#{comment_idx}
+</select>
 
 
+<!-- 댓글한개 삭제 -->
+<delete id="deleteCmtIdx" parameterType="int">
 
+delete from Mangchi.guest_comment where comment_idx=#{comment_idx}
+</delete>
 
 
 

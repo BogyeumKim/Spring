@@ -32,6 +32,8 @@ import com.aia.guest.model.Guest_post;
 import com.aia.guest.model.Guest_test;
 import com.aia.guest.model.guest_comment;
 import com.aia.guest.model.guest_likes;
+import com.aia.guest.service.CmtViewService;
+import com.aia.guest.service.CommentDeleteService;
 import com.aia.guest.service.GuestDeleteService;
 import com.aia.guest.service.GuestEditService;
 import com.aia.guest.service.GuestLikdownService;
@@ -77,9 +79,16 @@ public class Guest_Controller {
 	@Autowired
 	private GuestEditService editservice;
 	
-	
 	@Autowired
 	private SessionViewService sessionViewService;
+	
+	@Autowired
+	private CmtViewService cmtViewService;
+	
+	@Autowired
+	private CommentDeleteService cmtDeleteServcie;
+	
+	
 	
 	
 //	 전체 출력
@@ -178,6 +187,22 @@ public class Guest_Controller {
 	public int cmtworite(guest_comment cm) {
 		return writeCmtService.writeCmt(cm);
 	}
+	
+//댓글 한개 출력	
+	@CrossOrigin
+	@GetMapping("/cmt/{comment_idx}")
+	public guest_comment ViewCmt(@PathVariable("comment_idx") int comment_idx) {
+		return cmtViewService.getcmt(comment_idx);
+	}
+	
+	
+// 댓글 삭제
+	@CrossOrigin
+	@DeleteMapping("/delcmt/{comment_idx}")
+	public int deletecmt(@PathVariable("comment_idx") int comment_idx) {
+		return cmtDeleteServcie.delcmt(comment_idx);
+	}
+	
 	
 // 게시글 전체 카운트	
 	@CrossOrigin
