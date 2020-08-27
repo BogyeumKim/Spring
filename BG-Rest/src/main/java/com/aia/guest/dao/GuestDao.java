@@ -46,5 +46,7 @@ public interface GuestDao {
 
 	int deleteCmtIdx(int comment_idx);
 
+	int editTextCmt(String comment_text);
+
 	
 }

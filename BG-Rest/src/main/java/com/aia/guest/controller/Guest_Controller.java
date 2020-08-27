@@ -32,6 +32,7 @@ import com.aia.guest.model.Guest_post;
 import com.aia.guest.model.Guest_test;
 import com.aia.guest.model.guest_comment;
 import com.aia.guest.model.guest_likes;
+import com.aia.guest.service.CmtEditService;
 import com.aia.guest.service.CmtViewService;
 import com.aia.guest.service.CommentDeleteService;
 import com.aia.guest.service.GuestDeleteService;
@@ -88,7 +89,8 @@ public class Guest_Controller {
 	@Autowired
 	private CommentDeleteService cmtDeleteServcie;
 	
-	
+	@Autowired
+	private CmtEditService cmteditService;
 	
 	
 //	 전체 출력
@@ -201,6 +203,15 @@ public class Guest_Controller {
 	@DeleteMapping("/delcmt/{comment_idx}")
 	public int deletecmt(@PathVariable("comment_idx") int comment_idx) {
 		return cmtDeleteServcie.delcmt(comment_idx);
+	}
+	
+	
+	
+// 댓글 수정
+	@CrossOrigin
+	@PutMapping("/cmtedit")
+	public int editcmttext(@RequestParam("form") String comment_text) {
+		return cmteditService.editcmt(comment_text);
 	}
 	
 	

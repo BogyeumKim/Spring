@@ -160,6 +160,11 @@ delete from Mangchi.guest_comment where comment_idx=#{comment_idx}
 </delete>
 
 
+<update id="editTextCmt" parameterType="String">
+
+</update>
+
+
 
 
 
