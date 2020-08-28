@@ -17,9 +17,9 @@ public class CmtEditService {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public int editcmt(String comment_text) {
+	public int editcmt(String comment_text, int comment_idx) {
 		
 		dao=template.getMapper(GuestDao.class);
-		return dao.editTextCmt(comment_text);
+		return dao.editTextCmt(comment_text,comment_idx);
 	}
 }

@@ -34,6 +34,11 @@ public class GuestListService {
 				}
 			}
 		}
+		
+		
+	System.out.println("사이즈 :"+list.size());
+		
+		System.out.println(" 서비스에서 리미트보내주는값"+limit);
 
 
 		return list;

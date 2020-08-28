@@ -102,7 +102,7 @@ public class Guest_Controller {
 			@Param("param4") int limit,
 			@RequestParam("nick") String nick){
 		
-		
+		System.out.println("현재 리미트 : "+limit);
 		return ListService.getList(xx, yy, member_radius,limit,nick);
 	}
 	
@@ -210,8 +210,8 @@ public class Guest_Controller {
 // 댓글 수정
 	@CrossOrigin
 	@PutMapping("/cmtedit")
-	public int editcmttext(@RequestParam("form") String comment_text) {
-		return cmteditService.editcmt(comment_text);
+	public int editcmttext(@Param("cmtedittext") String cmtedittext, @Param("cmteditidx") int cmteditidx) {
+		return cmteditService.editcmt(cmtedittext,cmteditidx);
 	}
 	
 	

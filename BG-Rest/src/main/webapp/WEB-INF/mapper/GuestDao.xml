@@ -51,12 +51,9 @@ SELECT *
 
 FROM Mangchi.guest_book left join Mangchi.guest_comment
 on Mangchi.guest_book.guest_idx = Mangchi.guest_comment.comguest_idx
-left join Mangchi.guest_like
-on  Mangchi.guest_book.guest_idx= Mangchi.guest_like.guestlike_idx
-
 where (6371*acos(cos(radians(#{param1}))*cos(radians(x))*cos(radians(y)
 -radians(#{param2}))+sin(radians(#{param1}))*sin(radians(x)))) <= #{param3}
-
+group by guest_idx
 order by guest_idx desc limit 0,#{param4}
 
  ]]>
@@ -159,8 +156,9 @@ select * from Mangchi.guest_comment where comment_idx=#{comment_idx}
 delete from Mangchi.guest_comment where comment_idx=#{comment_idx}
 </delete>
 
-
-<update id="editTextCmt" parameterType="String">
+<!-- 댓글 한개 수정 -->
+<update id="editTextCmt" parameterType="map">
+update Mangchi.guest_comment set comment_text=#{param1} where comment_idx=#{param2}
 
 </update>
 
