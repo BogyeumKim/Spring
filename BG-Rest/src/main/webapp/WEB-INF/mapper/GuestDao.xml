@@ -163,6 +163,11 @@ update Mangchi.guest_comment set comment_text=#{param1} where comment_idx=#{para
 </update>
 
 
+<update id="hitsup" parameterType="int">
+<![CDATA[update Mangchi.guest_book set guest_hits =ifnull(guest_hits,0)+1 where guest_idx=#{guest_idx}]]>
+
+</update>
+
 
 
 

@@ -2,7 +2,9 @@ package com.aia.guest.controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.aia.guest.model.Guest_book;
 import com.aia.guest.model.Guest_edit;
@@ -37,6 +40,7 @@ import com.aia.guest.service.CmtViewService;
 import com.aia.guest.service.CommentDeleteService;
 import com.aia.guest.service.GuestDeleteService;
 import com.aia.guest.service.GuestEditService;
+import com.aia.guest.service.GuestHitsUpService;
 import com.aia.guest.service.GuestLikdownService;
 import com.aia.guest.service.GuestListService;
 import com.aia.guest.service.GuestViewService;
@@ -92,6 +96,9 @@ public class Guest_Controller {
 	@Autowired
 	private CmtEditService cmteditService;
 	
+	@Autowired
+	private GuestHitsUpService hitService;
+	
 	
 //	 전체 출력
 	@CrossOrigin
@@ -123,7 +130,39 @@ public class Guest_Controller {
 	@CrossOrigin
 	@GetMapping("/{guest_idx}")
 	public Guest_book viewgb(@PathVariable("guest_idx") int guest_idx,
-			@RequestParam("nick") String nick) {
+			@RequestParam("nick") String nick,HttpServletRequest req,HttpServletResponse res) {
+		
+		
+		Cookie[] cookies = req.getCookies();
+		String idxNo=Integer.toString(guest_idx);
+		Cookie viewCookie= null;
+		
+		if(cookies !=null && cookies.length>0) {
+			for(int i=0; i< cookies.length; i++) {
+				if(cookies[i].getName().equals("cookie"+guest_idx)) {
+					System.out.println("기존쿠키가 존재함");
+					viewCookie = cookies[i];
+				}
+			}
+		}
+		
+		if(viewCookie==null) {
+			System.out.println("쿠키없음 생성");
+			Cookie newCookie = new Cookie("cookie"+guest_idx,idxNo);
+			
+			res.addCookie(newCookie);
+			
+			int result = hitService.Hitsup(guest_idx);
+			
+		}else {
+			
+			String value = viewCookie.getValue();
+			System.out.println("쿠키있음"+value);
+		}
+		
+		
+		
+		
 		return viewService.getView(guest_idx,nick);
 	}
 	

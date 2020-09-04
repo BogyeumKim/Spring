@@ -48,5 +48,5 @@ public interface GuestDao {
 
 	int editTextCmt(String comment_text, int comment_idx);
 
-	
+	int hitsup(int guest_idx);
 }
