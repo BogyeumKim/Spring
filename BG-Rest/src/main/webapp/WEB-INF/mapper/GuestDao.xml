@@ -135,9 +135,10 @@ select * from Mangchi.guest_like where guestlike_nick=#{guestlike_nick}
 
 
 <!-- 접속한사람이 게시글쓴거 -->
-<select id="selectSessionList" parameterType="String" resultMap="guestbook">
+<select id="selectSessionList" parameterType="map" resultMap="guestbook">
 SELECT * FROM Mangchi.guest_book
-where Mangchi.guest_book.guest_writer=#{nick};
+where Mangchi.guest_book.guest_writer=#{param1}
+order by guest_idx desc limit 0,#{param2};
 
 </select>
 
@@ -162,12 +163,17 @@ update Mangchi.guest_comment set comment_text=#{param1} where comment_idx=#{para
 
 </update>
 
-
+<!-- 조회수 증가 -->
 <update id="hitsup" parameterType="int">
 <![CDATA[update Mangchi.guest_book set guest_hits =ifnull(guest_hits,0)+1 where guest_idx=#{guest_idx}]]>
 
 </update>
 
+
+<!-- 자신이쓴 게시글, 댓글 카운트값 -->
+<select id="mycount" parameterType="String" resultType="com.aia.guest.model.Guest_count">
+select count(*) post,(select count(*) from Mangchi.guest_comment where member_nick=#{param1}) cmt from Mangchi.guest_book where guest_writer=#{param1}
+</select>
 
 
 

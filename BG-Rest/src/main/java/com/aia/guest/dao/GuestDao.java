@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.aia.guest.model.Guest_book;
+import com.aia.guest.model.Guest_count;
 import com.aia.guest.model.Guest_edit;
 import com.aia.guest.model.Guest_test;
 import com.aia.guest.model.guest_comment;
@@ -40,7 +41,7 @@ public interface GuestDao {
 	List<guest_likes> getguest_like(String nick);
 	
 	
-	List<Guest_book> selectSessionList(String nick);
+	List<Guest_book> selectSessionList(String nick, int page);
 
 	guest_comment selectCmtIdx(int comment_idx);
 
@@ -49,4 +50,6 @@ public interface GuestDao {
 	int editTextCmt(String comment_text, int comment_idx);
 
 	int hitsup(int guest_idx);
+
+	Guest_count mycount(String guest_nick);
 }

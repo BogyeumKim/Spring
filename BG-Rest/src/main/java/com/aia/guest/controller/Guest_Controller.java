@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.aia.guest.model.Guest_book;
+import com.aia.guest.model.Guest_count;
 import com.aia.guest.model.Guest_edit;
 import com.aia.guest.model.Guest_post;
 import com.aia.guest.model.Guest_test;
@@ -38,6 +39,7 @@ import com.aia.guest.model.guest_likes;
 import com.aia.guest.service.CmtEditService;
 import com.aia.guest.service.CmtViewService;
 import com.aia.guest.service.CommentDeleteService;
+import com.aia.guest.service.CountService;
 import com.aia.guest.service.GuestDeleteService;
 import com.aia.guest.service.GuestEditService;
 import com.aia.guest.service.GuestHitsUpService;
@@ -99,6 +101,9 @@ public class Guest_Controller {
 	@Autowired
 	private GuestHitsUpService hitService;
 	
+	@Autowired
+	private CountService countService;
+	
 	
 //	 전체 출력
 	@CrossOrigin
@@ -109,7 +114,6 @@ public class Guest_Controller {
 			@Param("param4") int limit,
 			@RequestParam("nick") String nick){
 		
-		System.out.println("현재 리미트 : "+limit);
 		return ListService.getList(xx, yy, member_radius,limit,nick);
 	}
 	
@@ -279,9 +283,17 @@ public class Guest_Controller {
 // 자기가쓴글만 출력
 	@CrossOrigin
 	@GetMapping("/loginnick")
-	public List<Guest_book> bk(@Param("bb") String bb ) {
-		System.out.println(bb);
-		return sessionViewService.getnickListView(bb);
+	public List<Guest_book> bk(@RequestParam("bb") String bb,@RequestParam("limit") int page ) {
+		return sessionViewService.getnickListView(bb,page);
 	}
+	
+	
+//	자기가 쓴 게시글 댓글 카운트
+	@CrossOrigin
+	@GetMapping("/mycount")
+	public Guest_count count(@Param("bb") String bb ) {
+		return countService.Mycount(bb);
+	}
+	
 	
 }
