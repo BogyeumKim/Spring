@@ -152,8 +152,15 @@ public class Guest_Controller {
 		 * hitService.Hitsup(guest_idx); session.setAttribute("update_time"+guest_idx,
 		 * current_time); long test = (long) (current_time - update_time); }
 		 */
-		
-		///////// 쿠키로 로긴증감처리
+		return viewService.getView(guest_idx,nick);
+	}
+	
+	
+// 조회수증감
+	@CrossOrigin
+	@PutMapping("/hitsup/{guest_idx}")
+	public int hitsup(@PathVariable("guest_idx") int guest_idx,HttpServletRequest req,HttpServletResponse res) {
+			///////// 쿠키로 로긴증감처리
 		Cookie[] cookies = req.getCookies();
 		String idxNo=Integer.toString(guest_idx);
 		Cookie viewCookie= null;
@@ -161,7 +168,6 @@ public class Guest_Controller {
 		if(cookies !=null && cookies.length>0) {
 			for(int i=0; i< cookies.length; i++) {
 				if(cookies[i].getName().equals("cookie"+guest_idx)) {
-					System.out.println("기존쿠키가 존재함");
 					viewCookie = cookies[i];
 				}
 			}
@@ -173,20 +179,14 @@ public class Guest_Controller {
 			
 			res.addCookie(newCookie);
 			
-			int result = hitService.Hitsup(guest_idx);
+			return hitService.Hitsup(guest_idx);
 			
 		}else {
-			
 			String value = viewCookie.getValue();
 			System.out.println("쿠키있음"+value);
 		}
-		
-		
-		
-		
-		return viewService.getView(guest_idx,nick);
+		return guest_idx;
 	}
-	
 	
 // 좋아요 1인당 1개 증감 
 	@CrossOrigin
