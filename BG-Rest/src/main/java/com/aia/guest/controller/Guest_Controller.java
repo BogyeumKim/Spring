@@ -1,6 +1,7 @@
 package com.aia.guest.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -50,6 +51,7 @@ import com.aia.guest.service.GuestWriteService;
 import com.aia.guest.service.GuestlikService;
 import com.aia.guest.service.SessionViewService;
 import com.aia.guest.service.writeCmtService;
+import com.mysql.cj.Session;
 import com.sun.org.glassfish.gmbal.ParameterNames;
 
 @RestController
@@ -134,9 +136,24 @@ public class Guest_Controller {
 	@CrossOrigin
 	@GetMapping("/{guest_idx}")
 	public Guest_book viewgb(@PathVariable("guest_idx") int guest_idx,
-			@RequestParam("nick") String nick,HttpServletRequest req,HttpServletResponse res) {
+			@RequestParam("nick") String nick,HttpServletRequest req,HttpServletResponse res,HttpSession session) {
 		
 		
+		///////// 세션으로 로긴증감처리
+		/*
+		 * long update_time=0;
+		 * 
+		 * if(session.getAttribute("update_time"+guest_idx)!=null) {
+		 * update_time=(long)session.getAttribute("update_time"+guest_idx); }
+		 * 
+		 * long current_time=System.currentTimeMillis();
+		 * 
+		 * if(current_time - update_time>24*60*601000) { int result =
+		 * hitService.Hitsup(guest_idx); session.setAttribute("update_time"+guest_idx,
+		 * current_time); long test = (long) (current_time - update_time); }
+		 */
+		
+		///////// 쿠키로 로긴증감처리
 		Cookie[] cookies = req.getCookies();
 		String idxNo=Integer.toString(guest_idx);
 		Cookie viewCookie= null;
@@ -218,10 +235,12 @@ public class Guest_Controller {
 // 게시글 삭제
 	@CrossOrigin
 	@DeleteMapping("/deletec")
-	public int deletegb(@RequestParam(value = "guest_idx") int guest_idx,@RequestParam(value = "guest_photo") String photo,
+	public int deletegb(@RequestBody Map<String, Object> param,
 			HttpServletRequest req) {
-		System.out.println(guest_idx);
-		System.out.println(photo);
+		int guest_idx= (int)param.get("guest_idx");
+		String photo=(String)param.get("guest_photo");
+		
+	
 		return deleteService.deletePost(guest_idx,photo,req);
 		//return 0;
 	}
@@ -253,7 +272,10 @@ public class Guest_Controller {
 // 댓글 수정
 	@CrossOrigin
 	@PutMapping("/cmtedit")
-	public int editcmttext(@Param("cmtedittext") String cmtedittext, @Param("cmteditidx") int cmteditidx) {
+	public int editcmttext(@RequestBody Map<String, Object> param) {
+		String cmtedittext=(String)param.get("cmtedittext");
+		String cmteditidx2=(String)param.get("cmteditidx");
+		int cmteditidx =Integer.parseInt(cmteditidx2);
 		return cmteditService.editcmt(cmtedittext,cmteditidx);
 	}
 	

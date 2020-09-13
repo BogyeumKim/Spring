@@ -25,13 +25,14 @@ public class GuestDeleteService {
 		String uri = "/upload";
 		String realPath= req.getSession().getServletContext().getRealPath(uri);
 		
+		if(photo!=null) {
 		File file= new File(realPath,photo);
 		System.out.println("삭제경로주소 :"+file);
 		
 		 if(file.exists()) {
 			 file.delete();
 		 }
-		
+		}
 		
 		
 		return dao.deleteIdx(guest_idx);

@@ -59,7 +59,6 @@ if(file != null && !file.isEmpty() && file.getSize() > 0) {
 	 else { 
 				 
 					 gb.setGuest_photo(edit.getOldFile());
-				 System.out.println("널게스트포토 : "+gb.getGuest_photo());
 	 }
 			 
 	
